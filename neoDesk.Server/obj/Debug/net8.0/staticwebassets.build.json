@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "UA7ShZ5y0dt34W2CSvDCpkGhyb+ixcma+EjTdsqpQYA=",
+  "Source": "neoDesk.Server",
+  "BasePath": "_content/neoDesk.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\neodesk.client.esproj",
+      "Version": 2,
+      "Source": "neodesk.client",
+      "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

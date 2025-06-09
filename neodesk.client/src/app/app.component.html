@@ -1,0 +1,17 @@
+﻿<!-- app.component.html -->
+
+<div class="h-screen flex flex-col">
+  <!-- Top navbar -->
+  <app-nav-bar></app-nav-bar>
+
+  <!-- Sidebar + content -->
+  <div class="flex flex-1 overflow-hidden">
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
+
+    <!-- Main content area -->
+    <main class="flex-1 overflow-auto p-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+@neoDesk.Server_HostAddress = http://localhost:5080
+
+GET {{neoDesk.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

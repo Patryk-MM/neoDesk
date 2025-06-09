@@ -1,0 +1,311 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|c:\\users\\patryk\\source\\repos\\neodesk\\neodesk.client\\src\\environments\\environment.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|solutionrelative:neodesk.client\\src\\environments\\environment.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|c:\\users\\patryk\\source\\repos\\neodesk\\neodesk.client\\src\\app\\app.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|solutionrelative:neodesk.client\\src\\app\\app.component.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|c:\\users\\patryk\\source\\repos\\neodesk\\neodesk.client\\src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|solutionrelative:neodesk.client\\src\\app\\app.component.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|c:\\users\\patryk\\source\\repos\\neodesk\\neodesk.client\\src\\environments\\environment.development.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|solutionrelative:neodesk.client\\src\\environments\\environment.development.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|c:\\users\\patryk\\source\\repos\\neodesk\\neodesk.client\\tsconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|solutionrelative:neodesk.client\\tsconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|c:\\users\\patryk\\source\\repos\\neodesk\\neodesk.client\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|solutionrelative:neodesk.client\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|c:\\users\\patryk\\source\\repos\\neodesk\\neodesk.client\\angular.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|solutionrelative:neodesk.client\\angular.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|c:\\users\\patryk\\source\\repos\\neodesk\\neodesk.client\\karma.conf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|solutionrelative:neodesk.client\\karma.conf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|c:\\users\\patryk\\source\\repos\\neodesk\\neodesk.client\\src\\proxy.conf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|solutionrelative:neodesk.client\\src\\proxy.conf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|c:\\users\\patryk\\source\\repos\\neodesk\\neodesk.client\\.vscode\\launch.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|solutionrelative:neodesk.client\\.vscode\\launch.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}|neoDesk.Server\\neoDesk.Server.csproj|c:\\users\\patryk\\source\\repos\\neodesk\\neodesk.server\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}|neoDesk.Server\\neoDesk.Server.csproj|solutionrelative:neodesk.server\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|c:\\users\\patryk\\source\\repos\\neodesk\\neodesk.client\\package-lock.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}|neodesk.client\\neodesk.client.esproj|solutionrelative:neodesk.client\\package-lock.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}|neoDesk.Server\\neoDesk.Server.csproj|c:\\users\\patryk\\source\\repos\\neodesk\\neodesk.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}|neoDesk.Server\\neoDesk.Server.csproj|solutionrelative:neodesk.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}|neoDesk.Server\\neoDesk.Server.csproj|c:\\users\\patryk\\source\\repos\\neodesk\\neodesk.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}|neoDesk.Server\\neoDesk.Server.csproj|solutionrelative:neodesk.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}|neoDesk.Server\\neoDesk.Server.csproj|c:\\users\\patryk\\source\\repos\\neodesk\\neodesk.server\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}|neoDesk.Server\\neoDesk.Server.csproj|solutionrelative:neodesk.server\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "app.component.ts",
+              "DocumentMoniker": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\src\\app\\app.component.ts",
+              "RelativeDocumentMoniker": "neodesk.client\\src\\app\\app.component.ts",
+              "ToolTip": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\src\\app\\app.component.ts",
+              "RelativeToolTip": "neodesk.client\\src\\app\\app.component.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-09T08:23:24.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "app.component.html",
+              "DocumentMoniker": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\src\\app\\app.component.html",
+              "RelativeDocumentMoniker": "neodesk.client\\src\\app\\app.component.html",
+              "ToolTip": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\src\\app\\app.component.html",
+              "RelativeToolTip": "neodesk.client\\src\\app\\app.component.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvxAAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-06-09T08:23:20.331Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "environment.ts",
+              "DocumentMoniker": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\src\\environments\\environment.ts",
+              "RelativeDocumentMoniker": "neodesk.client\\src\\environments\\environment.ts",
+              "ToolTip": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\src\\environments\\environment.ts",
+              "RelativeToolTip": "neodesk.client\\src\\environments\\environment.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-09T08:22:29.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "environment.development.ts",
+              "DocumentMoniker": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\src\\environments\\environment.development.ts",
+              "RelativeDocumentMoniker": "neodesk.client\\src\\environments\\environment.development.ts",
+              "ToolTip": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\src\\environments\\environment.development.ts",
+              "RelativeToolTip": "neodesk.client\\src\\environments\\environment.development.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-09T08:21:55.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "tsconfig.json",
+              "DocumentMoniker": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\tsconfig.json",
+              "RelativeDocumentMoniker": "neodesk.client\\tsconfig.json",
+              "ToolTip": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\tsconfig.json",
+              "RelativeToolTip": "neodesk.client\\tsconfig.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-09T08:21:23.694Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "package.json",
+              "DocumentMoniker": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\package.json",
+              "RelativeDocumentMoniker": "neodesk.client\\package.json",
+              "ToolTip": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\package.json",
+              "RelativeToolTip": "neodesk.client\\package.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-09T08:21:21.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "angular.json",
+              "DocumentMoniker": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\angular.json",
+              "RelativeDocumentMoniker": "neodesk.client\\angular.json",
+              "ToolTip": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\angular.json",
+              "RelativeToolTip": "neodesk.client\\angular.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-09T08:21:14.519Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "karma.conf.js",
+              "DocumentMoniker": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\karma.conf.js",
+              "RelativeDocumentMoniker": "neodesk.client\\karma.conf.js",
+              "ToolTip": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\karma.conf.js",
+              "RelativeToolTip": "neodesk.client\\karma.conf.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-06-09T08:21:11.746Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "package-lock.json",
+              "DocumentMoniker": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\package-lock.json",
+              "RelativeDocumentMoniker": "neodesk.client\\package-lock.json",
+              "ToolTip": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\package-lock.json",
+              "RelativeToolTip": "neodesk.client\\package-lock.json",
+              "ViewState": "AgIAAM01AAAAAAAAAAAhwN81AABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-09T08:16:27.45Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "launch.json",
+              "DocumentMoniker": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\.vscode\\launch.json",
+              "RelativeDocumentMoniker": "neodesk.client\\.vscode\\launch.json",
+              "ToolTip": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\.vscode\\launch.json",
+              "RelativeToolTip": "neodesk.client\\.vscode\\launch.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-09T08:07:14.633Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neoDesk.Server\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "neoDesk.Server\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neoDesk.Server\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "neoDesk.Server\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T08:07:48.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "proxy.conf.js",
+              "DocumentMoniker": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\src\\proxy.conf.js",
+              "RelativeDocumentMoniker": "neodesk.client\\src\\proxy.conf.js",
+              "ToolTip": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neodesk.client\\src\\proxy.conf.js",
+              "RelativeToolTip": "neodesk.client\\src\\proxy.conf.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-06-09T08:07:19.711Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neoDesk.Server\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "neoDesk.Server\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neoDesk.Server\\Properties\\launchSettings.json",
+              "RelativeToolTip": "neoDesk.Server\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-09T08:06:33.848Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neoDesk.Server\\appsettings.json",
+              "RelativeDocumentMoniker": "neoDesk.Server\\appsettings.json",
+              "ToolTip": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neoDesk.Server\\appsettings.json",
+              "RelativeToolTip": "neoDesk.Server\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-09T08:06:30.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neoDesk.Server\\Program.cs",
+              "RelativeDocumentMoniker": "neoDesk.Server\\Program.cs",
+              "ToolTip": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neoDesk.Server\\Program.cs",
+              "RelativeToolTip": "neoDesk.Server\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T08:06:25.075Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
