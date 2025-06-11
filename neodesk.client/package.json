@@ -24,6 +24,7 @@
     "@tailwindcss/postcss": "^4.1.8",
     "component": "^1.1.0",
     "jest-editor-support": "*",
+    "lucide-angular": "^0.514.0",
     "run-script-os": "*",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

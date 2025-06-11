@@ -33,3 +33,4 @@ C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\refint\neoD
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\neoDesk.Server.pdb
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\neoDesk.Server.genruntimeconfig.cache
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\ref\neoDesk.Server.dll
+C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\neoDesk.Server.sourcelink.json

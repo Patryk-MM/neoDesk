@@ -23,6 +23,7 @@
     <PackageJsonDependenciesTailwindcssPostcss Condition="$(PackageJsonDependenciesTailwindcssPostcss) == ''">^4.1.8</PackageJsonDependenciesTailwindcssPostcss>
     <PackageJsonDependenciesComponent Condition="$(PackageJsonDependenciesComponent) == ''">^1.1.0</PackageJsonDependenciesComponent>
     <PackageJsonDependenciesJestEditorSupport Condition="$(PackageJsonDependenciesJestEditorSupport) == ''">*</PackageJsonDependenciesJestEditorSupport>
+    <PackageJsonDependenciesLucideAngular Condition="$(PackageJsonDependenciesLucideAngular) == ''">^0.514.0</PackageJsonDependenciesLucideAngular>
     <PackageJsonDependenciesRunScriptOs Condition="$(PackageJsonDependenciesRunScriptOs) == ''">*</PackageJsonDependenciesRunScriptOs>
     <PackageJsonDependenciesRxjs Condition="$(PackageJsonDependenciesRxjs) == ''">~7.8.0</PackageJsonDependenciesRxjs>
     <PackageJsonDependenciesTslib Condition="$(PackageJsonDependenciesTslib) == ''">^2.3.0</PackageJsonDependenciesTslib>
