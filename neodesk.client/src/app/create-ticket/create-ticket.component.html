@@ -1,1 +1,61 @@
-<p>create-ticket works!</p>
+<div class="flex flex-col m-4 p-4 border-2 border-base-300 rounded-md">
+<h1 class="text-lg pb-4">Nowe zgłoszenie</h1>
+
+  <form class="flex flex-col w-full gap-4">
+
+    <!-- FIELDS: two columns side by side -->
+    <div class="flex w-full gap-4">
+      <!-- LEFT SIDE -->
+      <div class="w-2/3 p-4 bg-base-100 border rounded-lg">
+        <!-- Tytuł zgłoszenia -->
+        <fieldset class="fieldset mb-4">
+          <legend class="fieldset-legend mb-2">Tytuł zgłoszenia</legend>
+          <input type="text" class="input input-bordered w-full" placeholder="Wprowadź tytuł" />
+        </fieldset>
+
+        <!-- Opis -->
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend mb-2">Opis</legend>
+          <quill-editor
+            class="rounded-lg border border-base-300"
+            [styles]="{ height: '200px' }">
+          </quill-editor>
+        </fieldset>
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="w-1/3 p-4 border rounded-lg flex flex-col gap-4">
+        <!-- Data utworzenia -->
+        <div class="flex items-center gap-4">
+          <label class="w-1/3 text-sm font-medium text-base-content text-right">Data utworzenia</label>
+          <input type="datetime-local" class="input input-bordered input-sm w-2/3" />
+        </div>
+
+        <!-- Kategoria -->
+        <div class="flex items-center gap-4">
+          <label class="w-1/3 text-sm font-medium text-base-content text-right">Kategoria</label>
+          <select class="select select-bordered select-sm w-2/3">
+            <option selected>Sprzęt</option>
+            <option>Oprogramowanie</option>
+          </select>
+        </div>
+
+        <!-- Status -->
+        <div class="flex items-center gap-4">
+          <label class="w-1/3 text-sm font-medium text-base-content text-right">Status</label>
+          <select class="select select-bordered select-sm w-2/3">
+            <option selected>Nowy</option>
+            <option>W toku</option>
+            <option>Zamknięty</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBMIT BUTTON BELOW, RIGHT-ALIGNED -->
+    <div class="flex justify-end">
+      <button type="submit" class="btn btn-success w-48">Utwórz nowe zgłoszenie</button>
+    </div>
+
+  </form>
+</div>

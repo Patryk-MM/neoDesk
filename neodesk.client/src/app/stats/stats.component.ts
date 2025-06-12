@@ -1,14 +1,25 @@
-import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-import { Chart, ArcElement, Tooltip, Legend, ChartConfiguration} from "chart.js";
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {
+  Chart,
+  ArcElement,
+  Tooltip,
+  Legend,
+  DoughnutController,
+} from 'chart.js';
 
-Chart.register(ArcElement, Tooltip, Legend);
+Chart.register(
+  ArcElement,
+  Tooltip,
+  Legend,
+  DoughnutController
+);
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss'
+  selector: 'app-stats',
+  templateUrl: './stats.component.html',
+  styleUrl: './stats.component.scss'
 })
-export class SidebarComponent implements AfterViewInit {
+export class StatsComponent implements AfterViewInit {
   @ViewChild('statusChart') statusChartRef!: ElementRef;
 
   ngAfterViewInit(): void {
@@ -20,7 +31,7 @@ export class SidebarComponent implements AfterViewInit {
     }
 
     new Chart(ctx, {
-      type: 'bar',
+      type: 'doughnut',
       data: {
         labels: ['Nowy', 'W toku', 'Zamknięty'],
         datasets: [{
@@ -40,3 +51,4 @@ export class SidebarComponent implements AfterViewInit {
     });
   }
 }
+

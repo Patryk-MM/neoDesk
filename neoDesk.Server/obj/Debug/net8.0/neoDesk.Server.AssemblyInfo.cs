@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("neoDesk.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+187b21c9f5763136f415fd246f4ad9382cf13ae7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+baaf3b6b3636708bcb6dda5d0e022d3afbc178a3")]
 [assembly: System.Reflection.AssemblyProductAttribute("neoDesk.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("neoDesk.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

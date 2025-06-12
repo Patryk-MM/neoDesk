@@ -2,21 +2,21 @@
   <!--  <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>-->
   <ul class="menu bg-base-200 rounded-box w-64">
     <li>
-      <details [open]="isCollapsed">
+      <details open>
         <summary>
           <lucide-icon name="headset"></lucide-icon>
-          <li class="menu-title text-lg text-base-content"> Incydenty</li>
+          <li class="menu-title text-lg text-base-content">Incydenty</li>
         </summary>
         <ul>
           <li><a [routerLink]="['/']"><lucide-icon name="info" class="w-4 h-4"></lucide-icon>Lista zgłoszeń</a></li>
           <li><a [routerLink]="['/create-ticket']"><lucide-icon name="plus" class="w-4 h-4"></lucide-icon>Utwórz nowe zgłoszenie</a></li>
-          <li><a><lucide-icon name="chart-bar" class="w-4 h-4"></lucide-icon>Statystyki</a></li>
+          <li><a [routerLink]="['/stats']"><lucide-icon name="chart-bar" class="w-4 h-4"></lucide-icon>Statystyki</a></li>
         </ul>
       </details>
       <details open>
         <summary>
           <lucide-icon name="book-open"></lucide-icon>
-          <li class="menu-title text-lg text-base-content"> Baza wiedzy</li>
+          <li class="menu-title text-lg text-base-content">Baza wiedzy</li>
         </summary>
         <ul>
           <li><a><lucide-icon name="book-open-text" class="w-4 h-4"></lucide-icon>Wpisy bazy wiedzy</a></li>

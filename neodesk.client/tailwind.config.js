@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     "./src/**/*.{html,ts}",
+    "./node_modules/ngx-quill/**/*.{js,ts}"
   ],
   theme: {
     extend: {
@@ -15,5 +16,5 @@ module.exports = {
   ],
   daisyui: {
     themes: true,
-  },
+  }
 }
