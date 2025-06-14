@@ -4,29 +4,30 @@
 
 <div class="flex flex-col items-center m-4 pt-4 border-2 border-base-300 rounded-md">
 
-  <span class="loading loading-spinner loading-xl" *ngIf="!forecasts || forecasts.length === 0" aria-label="Loading weather forecast"></span>
+  <span class="loading loading-spinner loading-xl" *ngIf="!tickets || tickets.length === 0" aria-label="Loading weather forecast"></span>
 
-  <table class="table table-sm table-zebra" *ngIf="forecasts && forecasts.length > 0">
-    <caption class="mb-2 text-2xl font-bold">Weather forecast table</caption>
+  <table class="table table-sm table-zebra" *ngIf="tickets && tickets.length > 0">
     <thead>
-    <tr>
-      <th>Date</th>
-      <th>TemperatureC</th>
-      <th>TemperatureF</th>
-      <th>Summary</th>
+    <tr class="text-lg">
+      <th>Id</th>
+      <th>Tytuł</th>
+      <th>Utworzono</th>
+      <th>Status</th>
+      <th>Kategoria</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.date }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
+    <tr *ngFor="let ticket of tickets">
+      <td>{{ ticket.id }}</td>
+      <td>{{ ticket.title }}</td>
+      <td>{{ ticket.createdAt }}</td>
+      <td>{{ ticket.status }}</td>
+      <td>{{ ticket.category }}</td>
     </tr>
     </tbody>
   </table>
 
-  <div *ngIf="forecasts && forecasts.length === 0" class="text-neutral-content mt-4">
+  <div *ngIf="tickets && tickets.length === 0" class="text-neutral-content mt-4">
     No forecasts available.
   </div>
 </div>

@@ -29,10 +29,8 @@ C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\neoDesk.Ser
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\neoDesk.Server.genruntimeconfig.cache
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\ref\neoDesk.Server.dll
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\neoDesk.Server.sourcelink.json
-C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\neoDesk.Server.staticwebassets.endpoints.json
-C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\rpswa.dswa.cache.json
-C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\rjimswa.dswa.cache.json
-C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
-C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
-C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\staticwebassets.build.json.cache
-C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\staticwebassets\msbuild.neoDesk.Server.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\staticwebassets\msbuild.build.neoDesk.Server.props
+C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.neoDesk.Server.props
+C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.neoDesk.Server.props
+C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\staticwebassets.pack.json

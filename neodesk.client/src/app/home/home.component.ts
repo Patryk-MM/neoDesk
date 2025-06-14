@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+interface Ticket {
+  id: number;
+  title: string;
+  description: string;
+  createdAt: string;
+  category: string;
+  status: string;
 }
 
 @Component({
@@ -15,20 +17,19 @@ interface WeatherForecast {
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public forecasts: WeatherForecast[] = [];
-  public isMinimized = false;
+  public tickets: Ticket[] = [];
   public title = 'neodesk.client';
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.getForecasts();
+    this.getTickets();
   }
 
-  getForecasts(): void {
-    this.http.get<WeatherForecast[]>(`${environment.baseUrl}api/weatherforecast`)
+  getTickets(): void {
+    this.http.get<Ticket[]>(`${environment.baseUrl}api/ticket`)
       .subscribe({
-        next: (result) => this.forecasts = result,
+        next: (result) => this.tickets = result,
         error: (err) => console.error(err)
       });
   }
