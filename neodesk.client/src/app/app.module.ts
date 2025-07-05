@@ -1,8 +1,7 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {Form, FormsModule} from "@angular/forms";
-import {NgSelectModule} from '@ng-select/ng-select'
+import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,8 +10,14 @@ import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { LucideAngularModule, Headset, Info, Plus, ChartBar, BookOpen, BookOpenText, BookPlus, Settings, Wrench, UserRound } from 'lucide-angular';
 import { CreateTicketComponent } from './create-ticket/create-ticket.component'
-import {QuillModule} from "ngx-quill";
+import { TicketDetailComponent } from './ticket-detail/ticket-detail.component';
+import { LoginComponent } from './login/login.component';
+import { UserManagementComponent } from './user-management/user-management.component';
+import { QuillModule } from "ngx-quill";
 import { StatsComponent } from './stats/stats.component';
+
+// Auth
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,10 +26,14 @@ import { StatsComponent } from './stats/stats.component';
     HomeComponent,
     SidebarComponent,
     CreateTicketComponent,
+    TicketDetailComponent,
+    LoginComponent,
+    UserManagementComponent,
     StatsComponent,
   ],
   imports: [
-    BrowserModule, HttpClientModule,
+    BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     LucideAngularModule.pick({
       Headset,
@@ -38,9 +47,16 @@ import { StatsComponent } from './stats/stats.component';
       Wrench,
       UserRound
     }),
-    QuillModule.forRoot(), FormsModule
+    QuillModule.forRoot(),
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

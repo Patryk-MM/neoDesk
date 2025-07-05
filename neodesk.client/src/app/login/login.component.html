@@ -1,0 +1,64 @@
+<div class="min-h-screen flex items-center justify-center bg-base-200">
+  <div class="card w-full max-w-md shadow-xl bg-base-100">
+    <div class="card-body">
+      <h2 class="card-title text-center text-2xl font-bold mb-6">
+        Logowanie do neoDesk
+      </h2>
+
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="alert alert-error mb-4">
+        <span>{{ errorMessage }}</span>
+      </div>
+
+      <form (ngSubmit)="onSubmit()" class="space-y-4">
+        <!-- Email -->
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Email</span>
+          </label>
+          <input
+            type="email"
+            class="input input-bordered w-full"
+            placeholder="wprowadź swój email"
+            [(ngModel)]="loginData.email"
+            name="email"
+            required
+            [disabled]="isLoggingIn" />
+        </div>
+
+        <!-- Password -->
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Hasło</span>
+          </label>
+          <input
+            type="password"
+            class="input input-bordered w-full"
+            placeholder="wprowadź swoje hasło"
+            [(ngModel)]="loginData.password"
+            name="password"
+            required
+            [disabled]="isLoggingIn" />
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-control mt-6">
+          <button
+            type="submit"
+            class="btn btn-primary w-full"
+            [disabled]="isLoggingIn"
+            [class.loading]="isLoggingIn">
+            {{ isLoggingIn ? 'Logowanie...' : 'Zaloguj się' }}
+          </button>
+        </div>
+
+        <!-- Contact Admin -->
+        <div class="text-center mt-4">
+          <p class="text-sm text-base-content opacity-70">
+            Nie masz dostępu? Skontaktuj się z administratorem systemu.
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

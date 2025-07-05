@@ -1,0 +1,183 @@
+﻿<div class="flex flex-col m-4 p-4 border-2 border-base-300 rounded-md">
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="flex justify-center items-center py-8">
+    <span class="loading loading-spinner loading-xl"></span>
+  </div>
+
+  <!-- Ticket Details -->
+  <div *ngIf="!isLoading && ticket" class="flex flex-col gap-4">
+
+    <!-- Header with Back Button and Actions -->
+    <div class="flex justify-between items-center mb-4">
+      <div class="flex items-center gap-4">
+        <button class="btn btn-ghost btn-sm" (click)="goBack()">
+          ← Powrót do listy
+        </button>
+        <h1 class="text-2xl font-bold">Szczegóły zgłoszenia #{{ ticket.id }}</h1>
+      </div>
+
+      <div class="flex gap-2" *ngIf="!isEditing">
+        <button class="btn btn-primary btn-sm" (click)="toggleEdit()">
+          Edytuj
+        </button>
+        <button
+          class="btn btn-error btn-sm"
+          (click)="deleteTicket()"
+          [disabled]="isDeleting"
+          [class.loading]="isDeleting">
+          {{ isDeleting ? 'Usuwanie...' : 'Usuń' }}
+        </button>
+      </div>
+
+      <div class="flex gap-2" *ngIf="isEditing">
+        <button
+          class="btn btn-success btn-sm"
+          (click)="saveTicket()"
+          [disabled]="isSaving"
+          [class.loading]="isSaving">
+          {{ isSaving ? 'Zapisywanie...' : 'Zapisz' }}
+        </button>
+        <button class="btn btn-ghost btn-sm" (click)="toggleEdit()">
+          Anuluj
+        </button>
+      </div>
+    </div>
+
+    <!-- View Mode -->
+    <div *ngIf="!isEditing" class="flex w-full gap-4">
+      <!-- LEFT SIDE - Content -->
+      <div class="w-2/3 p-4 bg-base-100 border rounded-lg">
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold mb-2">Tytuł</h3>
+          <p class="text-base-content">{{ ticket.title }}</p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold mb-2">Opis</h3>
+          <div class="prose max-w-none" [innerHTML]="ticket.description"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE - Metadata -->
+      <div class="w-1/3 p-4 border rounded-lg space-y-4">
+        <div>
+          <label class="text-sm font-medium text-base-content opacity-70">Data utworzenia</label>
+          <p class="text-base-content">{{ ticket.createdAt }}</p>
+        </div>
+
+        <div>
+          <label class="text-sm font-medium text-base-content opacity-70">Kategoria</label>
+          <p class="text-base-content">{{ ticket.category }}</p>
+        </div>
+
+        <div>
+          <label class="text-sm font-medium text-base-content opacity-70">Status</label>
+          <div class="badge"
+               [class.badge-success]="ticket.status === 'Rozwiązany'"
+               [class.badge-warning]="ticket.status === 'Przypisany'"
+               [class.badge-error]="ticket.status === 'Wstrzymany'"
+               [class.badge-info]="ticket.status === 'Nowy'">
+            {{ ticket.status }}
+          </div>
+        </div>
+
+        <div *ngIf="ticket.createdBy">
+          <label class="text-sm font-medium text-base-content opacity-70">Utworzone przez</label>
+          <p class="text-base-content">{{ ticket.createdBy }}</p>
+        </div>
+
+        <div *ngIf="ticket.assignedTo">
+          <label class="text-sm font-medium text-base-content opacity-70">Przypisane do</label>
+          <p class="text-base-content">{{ ticket.assignedTo }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Mode -->
+    <form *ngIf="isEditing" class="flex w-full gap-4" (ngSubmit)="saveTicket()">
+      <!-- LEFT SIDE - Editable Content -->
+      <div class="w-2/3 p-4 bg-base-100 border rounded-lg">
+        <!-- Tytuł zgłoszenia -->
+        <fieldset class="fieldset mb-4">
+          <legend class="fieldset-legend mb-2">Tytuł zgłoszenia *</legend>
+          <input
+            type="text"
+            class="input input-bordered w-full"
+            placeholder="Wprowadź tytuł"
+            [(ngModel)]="editTicket.title"
+            name="title"
+            required />
+        </fieldset>
+
+        <!-- Opis -->
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend mb-2">Opis *</legend>
+          <quill-editor
+            class="rounded-lg border border-base-300"
+            [styles]="{ height: '200px' }"
+            [(ngModel)]="editTicket.description"
+            name="description"
+            (onContentChanged)="onDescriptionChange($event)"
+            placeholder="Opisz problem szczegółowo...">
+          </quill-editor>
+        </fieldset>
+      </div>
+
+      <!-- RIGHT SIDE - Editable Metadata -->
+      <div class="w-1/3 p-4 border rounded-lg flex flex-col gap-4">
+        <!-- Data utworzenia -->
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-medium text-base-content">Data utworzenia</label>
+          <input
+            type="datetime-local"
+            class="input input-bordered input-sm"
+            [(ngModel)]="editTicket.createdAt"
+            name="createdAt"
+            required />
+        </div>
+
+        <!-- Kategoria -->
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-medium text-base-content">Kategoria</label>
+          <select
+            class="select select-bordered select-sm"
+            [(ngModel)]="editTicket.category"
+            name="category">
+            <option value="0">Oprogramowanie</option>
+            <option value="1">Sprzęt</option>
+          </select>
+        </div>
+
+        <!-- Status -->
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-medium text-base-content">Status</label>
+          <select
+            class="select select-bordered select-sm"
+            [(ngModel)]="editTicket.status"
+            name="status">
+            <option value="0">Nowy</option>
+            <option value="1">Przypisany</option>
+            <option value="2">Wstrzymany</option>
+            <option value="3">Rozwiązany</option>
+          </select>
+        </div>
+
+        <div class="divider"></div>
+
+        <div *ngIf="ticket.createdBy" class="text-sm">
+          <label class="font-medium text-base-content opacity-70">Utworzone przez</label>
+          <p class="text-base-content">{{ ticket.createdBy }}</p>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="!isLoading && !ticket" class="text-center py-8">
+    <p class="text-error">Nie można załadować zgłoszenia</p>
+    <button class="btn btn-primary mt-4" (click)="goBack()">Powrót do listy</button>
+  </div>
+
+</div>

@@ -1,12 +1,17 @@
 <div class="flex flex-col m-4 p-4 border-2 border-base-300 rounded-md">
-  <p class="text-xl">Kontener na filtry</p>
+  <div class="flex justify-between items-center mb-4">
+    <p class="text-xl">Lista zgłoszeń</p>
+    <button class="btn btn-ghost btn-sm" (click)="refreshTickets()">
+      Odśwież
+    </button>
+  </div>
 </div>
 
 <div class="flex flex-col items-center m-4 pt-4 border-2 border-base-300 rounded-md">
 
-  <span class="loading loading-spinner loading-xl" *ngIf="!tickets || tickets.length === 0" aria-label="Loading weather forecast"></span>
+  <span class="loading loading-spinner loading-xl" *ngIf="isLoading" aria-label="Loading tickets"></span>
 
-  <table class="table table-sm table-zebra" *ngIf="tickets && tickets.length > 0">
+  <table class="table table-sm table-zebra" *ngIf="!isLoading && tickets && tickets.length > 0">
     <thead>
     <tr class="text-lg">
       <th>Id</th>
@@ -14,20 +19,51 @@
       <th>Utworzono</th>
       <th>Status</th>
       <th>Kategoria</th>
+      <th>Utworzone przez</th>
+      <th>Akcje</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let ticket of tickets">
       <td>{{ ticket.id }}</td>
-      <td>{{ ticket.title }}</td>
+      <td>
+        <a
+          [routerLink]="['/ticket', ticket.id]"
+          class="link link-primary hover:link-secondary">
+          {{ ticket.title }}
+        </a>
+      </td>
       <td>{{ ticket.createdAt }}</td>
-      <td>{{ ticket.status }}</td>
+      <td>
+        <div class="badge"
+             [class.badge-success]="ticket.status === 'Rozwiązany'"
+             [class.badge-warning]="ticket.status === 'Przypisany'"
+             [class.badge-error]="ticket.status === 'Wstrzymany'"
+             [class.badge-info]="ticket.status === 'Nowy'">
+          {{ ticket.status }}
+        </div>
+      </td>
       <td>{{ ticket.category }}</td>
+      <td>{{ ticket.createdBy || '-' }}</td>
+      <td>
+        <div class="flex gap-1">
+          <button
+            class="btn btn-xs btn-primary"
+            [routerLink]="['/ticket', ticket.id]">
+            Zobacz
+          </button>
+        </div>
+      </td>
     </tr>
     </tbody>
   </table>
 
-  <div *ngIf="tickets && tickets.length === 0" class="text-neutral-content mt-4">
-    No forecasts available.
+  <div *ngIf="!isLoading && (!tickets || tickets.length === 0)" class="text-neutral-content mt-4">
+    <p class="text-center">Brak zgłoszeń do wyświetlenia.</p>
+    <div class="text-center mt-4">
+      <a routerLink="/create-ticket" class="btn btn-primary">
+        Utwórz pierwsze zgłoszenie
+      </a>
+    </div>
   </div>
 </div>

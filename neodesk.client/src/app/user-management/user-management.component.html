@@ -1,0 +1,266 @@
+<div class="flex flex-col m-4 p-4 border-2 border-base-300 rounded-md">
+
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">Zarządzanie użytkownikami</h1>
+    <button class="btn btn-primary" (click)="openCreateForm()">
+      <span class="mr-2">+</span>
+      Dodaj użytkownika
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="flex justify-center items-center py-8">
+    <span class="loading loading-spinner loading-xl"></span>
+  </div>
+
+  <!-- Users Table -->
+  <div *ngIf="!isLoading" class="overflow-x-auto">
+    <table class="table table-zebra">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Imię i nazwisko</th>
+        <th>Email</th>
+        <th>Rola</th>
+        <th>Status</th>
+        <th>Data utworzenia</th>
+        <th>Ostatnie logowanie</th>
+        <th>Akcje</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <div class="badge"
+               [class.badge-success]="user.role === 'Admin'"
+               [class.badge-warning]="user.role === 'Technician'"
+               [class.badge-info]="user.role === 'EndUser'">
+            {{ getRoleLabel(user.role) }}
+          </div>
+        </td>
+        <td>
+          <div class="badge"
+               [class.badge-success]="user.isActive"
+               [class.badge-error]="!user.isActive">
+            {{ user.isActive ? 'Aktywny' : 'Nieaktywny' }}
+          </div>
+        </td>
+        <td>{{ user.createdAt | date:'short' }}</td>
+        <td>{{ user.lastLoginAt ? (user.lastLoginAt | date:'short') : 'Nigdy' }}</td>
+        <td>
+          <div class="flex gap-1">
+            <button class="btn btn-xs btn-primary" (click)="openEditForm(user)">
+              Edytuj
+            </button>
+            <button class="btn btn-xs btn-warning" (click)="openPasswordReset(user)">
+              Reset hasła
+            </button>
+            <button class="btn btn-xs"
+                    [class.btn-error]="user.isActive"
+                    [class.btn-success]="!user.isActive"
+                    (click)="toggleUserStatus(user)">
+              {{ user.isActive ? 'Dezaktywuj' : 'Aktywuj' }}
+            </button>
+            <button class="btn btn-xs btn-error" (click)="deleteUser(user)">
+              Usuń
+            </button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="users.length === 0" class="text-center py-8">
+      <p class="text-neutral-content">Brak użytkowników w systemie</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Create User Modal -->
+<div class="modal" [class.modal-open]="showCreateForm">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg mb-4">Dodaj nowego użytkownika</h3>
+
+    <form (ngSubmit)="createUser()" class="space-y-4">
+      <!-- Name -->
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Imię i nazwisko *</span>
+        </label>
+        <input type="text"
+               class="input input-bordered"
+               [(ngModel)]="newUser.name"
+               name="name"
+               required
+               placeholder="Jan Kowalski" />
+      </div>
+
+      <!-- Email -->
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Email *</span>
+        </label>
+        <input type="email"
+               class="input input-bordered"
+               [(ngModel)]="newUser.email"
+               name="email"
+               required
+               placeholder="jan.kowalski@firma.pl" />
+      </div>
+
+      <!-- Password -->
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Hasło *</span>
+        </label>
+        <input type="password"
+               class="input input-bordered"
+               [(ngModel)]="newUser.password"
+               name="password"
+               required
+               minlength="6"
+               placeholder="Minimum 6 znaków" />
+      </div>
+
+      <!-- Role -->
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Rola *</span>
+        </label>
+        <select class="select select-bordered"
+                [(ngModel)]="newUser.role"
+                name="role">
+          <option *ngFor="let role of roles" [value]="role.value">
+            {{ role.label }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Buttons -->
+      <div class="modal-action">
+        <button type="button" class="btn" (click)="closeCreateForm()">Anuluj</button>
+        <button type="submit"
+                class="btn btn-primary"
+                [disabled]="isCreating"
+                [class.loading]="isCreating">
+          {{ isCreating ? 'Tworzenie...' : 'Utwórz użytkownika' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit User Modal -->
+<div class="modal" [class.modal-open]="showEditForm">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg mb-4">Edytuj użytkownika</h3>
+
+    <form (ngSubmit)="updateUser()" class="space-y-4">
+      <!-- Name -->
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Imię i nazwisko *</span>
+        </label>
+        <input type="text"
+               class="input input-bordered"
+               [(ngModel)]="editUser.name"
+               name="editName"
+               required />
+      </div>
+
+      <!-- Email -->
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Email *</span>
+        </label>
+        <input type="email"
+               class="input input-bordered"
+               [(ngModel)]="editUser.email"
+               name="editEmail"
+               required />
+      </div>
+
+      <!-- Role -->
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Rola *</span>
+        </label>
+        <select class="select select-bordered"
+                [(ngModel)]="editUser.role"
+                name="editRole">
+          <option *ngFor="let role of roles" [value]="role.value">
+            {{ role.label }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Active Status -->
+      <div class="form-control">
+        <label class="label cursor-pointer">
+          <span class="label-text">Konto aktywne</span>
+          <input type="checkbox"
+                 class="toggle toggle-primary"
+                 [(ngModel)]="editUser.isActive"
+                 name="editIsActive" />
+        </label>
+      </div>
+
+      <!-- New Password (Optional) -->
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Nowe hasło (opcjonalne)</span>
+        </label>
+        <input type="password"
+               class="input input-bordered"
+               [(ngModel)]="editUser.password"
+               name="editPassword"
+               minlength="6"
+               placeholder="Pozostaw puste, aby nie zmieniać" />
+      </div>
+
+      <!-- Buttons -->
+      <div class="modal-action">
+        <button type="button" class="btn" (click)="closeEditForm()">Anuluj</button>
+        <button type="submit" class="btn btn-primary">
+          Zapisz zmiany
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Reset Password Modal -->
+<div class="modal" [class.modal-open]="showPasswordReset">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg mb-4">Resetuj hasło</h3>
+
+    <form (ngSubmit)="resetUserPassword()" class="space-y-4">
+      <!-- New Password -->
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Nowe hasło *</span>
+        </label>
+        <input type="password"
+               class="input input-bordered"
+               [(ngModel)]="resetPassword.password"
+               name="resetPasswordField"
+               required
+               minlength="6"
+               placeholder="Minimum 6 znaków" />
+      </div>
+
+      <!-- Buttons -->
+      <div class="modal-action">
+        <button type="button" class="btn" (click)="closePasswordReset()">Anuluj</button>
+        <button type="submit" class="btn btn-warning">
+          Resetuj hasło
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
