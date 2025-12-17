@@ -43,8 +43,8 @@ public class TicketController : ControllerBase
             Title = t.Title,
             Description = t.Description,
             CreatedAt = t.CreatedAt.ToString("g"),
-            Category = t.Category.GetDisplayName(),
-            Status = t.Status.GetDisplayName(),
+            Category = t.Category,
+            Status = t.Status,
             CreatedBy = t.CreatedByUser.Name,
             AssignedTo = t.AssignedToUser?.Name
         });
@@ -72,8 +72,8 @@ public class TicketController : ControllerBase
             Title = ticket.Title,
             Description = ticket.Description,
             CreatedAt = ticket.CreatedAt.ToString("g"),
-            Category = ticket.Category.GetDisplayName(),
-            Status = ticket.Status.GetDisplayName(),
+            Category = ticket.Category,
+            Status = ticket.Status,
             CreatedBy = ticket.CreatedByUser.Name,
             AssignedTo = ticket.AssignedToUser?.Name
         };
@@ -104,7 +104,7 @@ public class TicketController : ControllerBase
             Status = createTicketDTO.Status,
             CreatedByUserId = currentUserId, // Use actual logged-in user
             // AssignedToUserId is null by default - use separate assign endpoint
-            CreatedAt = createTicketDTO.CreatedAt ?? DateTime.Now
+            CreatedAt = DateTime.Now
         };
 
         _context.Tickets.Add(ticket);
@@ -121,8 +121,8 @@ public class TicketController : ControllerBase
             Title = ticket.Title,
             Description = ticket.Description,
             CreatedAt = ticket.CreatedAt.ToString("g"),
-            Category = ticket.Category.GetDisplayName(),
-            Status = ticket.Status.GetDisplayName(),
+            Category = ticket.Category,
+            Status = ticket.Status,
             CreatedBy = ticket.CreatedByUser.Name,
             AssignedTo = null // No assignment on creation
         };
@@ -304,8 +304,8 @@ public class TicketController : ControllerBase
             Title = t.Title,
             Description = t.Description,
             CreatedAt = t.CreatedAt.ToString("g"),
-            Category = t.Category.GetDisplayName(),
-            Status = t.Status.GetDisplayName(),
+            Category = t.Category,
+            Status = t.Status,
             CreatedBy = t.CreatedByUser.Name,
             AssignedTo = t.AssignedToUser?.Name
         });

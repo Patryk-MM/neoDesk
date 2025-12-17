@@ -18,6 +18,7 @@ import { StatsComponent } from './stats/stats.component';
 
 // Auth
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { TicketListComponent } from './ticket-list/ticket-list.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     LoginComponent,
     UserManagementComponent,
     StatsComponent,
+    TicketListComponent,
   ],
   imports: [
     BrowserModule,

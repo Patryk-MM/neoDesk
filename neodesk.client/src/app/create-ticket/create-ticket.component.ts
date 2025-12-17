@@ -46,7 +46,7 @@ export class CreateTicketComponent {
       },
       error: (error) => {
         console.error('Error creating ticket:', error);
-        alert('Wystąpił błąd podczas tworzenia zgłoszenia');
+        alert('Wystąpił błąd podczas tworzenia zgłoszenia: ' + {error});
         this.isSubmitting = false;
       }
     });

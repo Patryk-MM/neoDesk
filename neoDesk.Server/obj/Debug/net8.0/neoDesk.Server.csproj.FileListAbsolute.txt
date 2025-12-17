@@ -29,11 +29,6 @@ C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\neoDesk.Ser
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\neoDesk.Server.genruntimeconfig.cache
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\ref\neoDesk.Server.dll
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\neoDesk.Server.sourcelink.json
-C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\staticwebassets\msbuild.neoDesk.Server.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\staticwebassets\msbuild.build.neoDesk.Server.props
-C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.neoDesk.Server.props
-C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.neoDesk.Server.props
-C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\Azure.Identity.dll
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\Humanizer.dll
@@ -75,7 +70,6 @@ C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\System.Comp
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\System.Composition.TypedParts.dll
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\System.Drawing.Common.dll
-C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\System.Formats.Asn1.dll
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\System.Memory.Data.dll
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\System.Runtime.Caching.dll
@@ -148,3 +142,11 @@ C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\runtimes\wi
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\bin\Debug\net8.0\neoDesk.Server.staticwebassets.endpoints.json
+C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\Users\Patryk\source\repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\Patryk\Source\Repos\neoDesk\neoDesk.Server\obj\Debug\net8.0\swae.build.ex.cache

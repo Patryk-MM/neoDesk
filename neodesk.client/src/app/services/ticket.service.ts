@@ -1,19 +1,24 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
 import { Ticket, CreateTicket } from '../models/ticket.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketService {
-  private apiUrl = `${environment.baseUrl}api/ticket`;
+  // ZMIANA: Używamy ścieżki relatywnej. 
+  // Angular Proxy (proxy.conf.js) zajmie się przekierowaniem na https://localhost:40443
+  private apiUrl = '/api/ticket';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getTickets(): Observable<Ticket[]> {
     return this.http.get<Ticket[]>(this.apiUrl);
+  }
+
+  getMyTickets(): Observable<Ticket[]> {
+    return this.http.get<Ticket[]>(`${this.apiUrl}/my-tickets`);
   }
 
   getTicket(id: number): Observable<Ticket> {

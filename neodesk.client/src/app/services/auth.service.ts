@@ -1,16 +1,16 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environment';
 import { LoginRequest, AuthResponse, User } from '../models/auth.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = `${environment.baseUrl}api/auth`;
+  private apiUrl = '/api/auth';
+
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
 
@@ -21,7 +21,6 @@ export class AuthService {
     private http: HttpClient,
     private router: Router
   ) {
-    // Check if user is already logged in on service initialization
     this.initializeAuth();
   }
 

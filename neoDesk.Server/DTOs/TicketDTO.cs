@@ -14,9 +14,6 @@ public class CreateTicketDTO
     
     public Category Category { get; set; }
     public Status Status { get; set; } = Status.New;
-    
-    // Optional creation date - if not provided, will use current time
-    public DateTime? CreatedAt { get; set; }
 }
 
 public class TicketDTO
@@ -25,8 +22,8 @@ public class TicketDTO
     public required string Title { get; set; }
     public required string Description { get; set; }
     public required string CreatedAt { get; set; }
-    public required string Category { get; set; }
-    public required string Status { get; set; }
+    public required Category Category { get; set; }
+    public required Status Status { get; set; }
     public string? CreatedBy { get; set; }
     public string? AssignedTo { get; set; }
 }

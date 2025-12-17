@@ -7,21 +7,51 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "neoDesk.Server", "neoDesk.S
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "neodesk.client", "neodesk.client\neodesk.client.esproj", "{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "neoDesk.Server.Tests", "neoDesk.Server.Tests\neoDesk.Server.Tests.csproj", "{AF0FB37D-80E5-4043-8928-3180154863DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}.Debug|x64.Build.0 = Debug|Any CPU
+		{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}.Debug|x86.Build.0 = Debug|Any CPU
 		{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}.Release|x64.ActiveCfg = Release|Any CPU
+		{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}.Release|x64.Build.0 = Release|Any CPU
+		{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}.Release|x86.ActiveCfg = Release|Any CPU
+		{149D7D6E-C60C-4F03-BC41-74E0F9F8BD06}.Release|x86.Build.0 = Release|Any CPU
 		{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}.Debug|x64.ActiveCfg = Debug|x64
+		{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}.Debug|x86.ActiveCfg = Debug|x86
 		{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}.Release|x64.ActiveCfg = Release|x64
+		{90DB5C0D-B59A-4B4F-A52D-E7EB6C9D18FE}.Release|x86.ActiveCfg = Release|x86
+		{AF0FB37D-80E5-4043-8928-3180154863DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF0FB37D-80E5-4043-8928-3180154863DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF0FB37D-80E5-4043-8928-3180154863DA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AF0FB37D-80E5-4043-8928-3180154863DA}.Debug|x64.Build.0 = Debug|Any CPU
+		{AF0FB37D-80E5-4043-8928-3180154863DA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AF0FB37D-80E5-4043-8928-3180154863DA}.Debug|x86.Build.0 = Debug|Any CPU
+		{AF0FB37D-80E5-4043-8928-3180154863DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF0FB37D-80E5-4043-8928-3180154863DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF0FB37D-80E5-4043-8928-3180154863DA}.Release|x64.ActiveCfg = Release|Any CPU
+		{AF0FB37D-80E5-4043-8928-3180154863DA}.Release|x64.Build.0 = Release|Any CPU
+		{AF0FB37D-80E5-4043-8928-3180154863DA}.Release|x86.ActiveCfg = Release|Any CPU
+		{AF0FB37D-80E5-4043-8928-3180154863DA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

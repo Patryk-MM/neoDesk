@@ -21,28 +21,38 @@ public class AuthService : IAuthService
         _configuration = configuration;
     }
 
+    // ... fragment pliku neoDesk.Server/Services/AuthService.cs
+
     public async Task<AuthResponseDTO?> LoginAsync(LoginDTO loginDto)
     {
         Console.WriteLine($"Login attempt for: {loginDto.Email}");
-    
+
         var user = await GetUserByEmailAsync(loginDto.Email);
         Console.WriteLine($"User found: {user != null}");
-    
+
         if (user == null || !user.IsActive)
         {
             Console.WriteLine("User not found or inactive");
             return null;
         }
-    
+
         var passwordVerify = BCrypt.Net.BCrypt.Verify(loginDto.Password, user.PasswordHash);
         Console.WriteLine($"Password verify: {passwordVerify}");
+
+        // --- BRAKUJĄCY FRAGMENT ---
+        if (!passwordVerify)
+        {
+            Console.WriteLine("Invalid password");
+            return null;
+        }
+        // ---------------------------
 
         // Update last login
         user.LastLoginAt = DateTime.Now;
         await _context.SaveChangesAsync();
 
         var token = GenerateJwtToken(user);
-        
+
         return new AuthResponseDTO
         {
             Token = token,

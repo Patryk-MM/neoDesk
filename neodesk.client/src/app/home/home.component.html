@@ -36,14 +36,14 @@
       <td>{{ ticket.createdAt }}</td>
       <td>
         <div class="badge"
-             [class.badge-success]="ticket.status === 'Rozwiązany'"
-             [class.badge-warning]="ticket.status === 'Przypisany'"
-             [class.badge-error]="ticket.status === 'Wstrzymany'"
-             [class.badge-info]="ticket.status === 'Nowy'">
-          {{ ticket.status }}
+             [class.badge-success]="ticket.status === 0"
+             [class.badge-warning]="ticket.status === 1"
+             [class.badge-error]="ticket.status === 2"
+             [class.badge-info]="ticket.status === 3">
+          {{ getStatusLabel(ticket.status) }}
         </div>
       </td>
-      <td>{{ ticket.category }}</td>
+      <td>{{ getCategoryLabel(ticket.category) }}</td>
       <td>{{ ticket.createdBy || '-' }}</td>
       <td>
         <div class="flex gap-1">

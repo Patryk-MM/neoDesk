@@ -1,10 +1,12 @@
-﻿export interface Ticket {
+import {TicketCategory, TicketStatus} from "./ticket.enums";
+
+export interface Ticket {
   id: number;
   title: string;
   description: string;
   createdAt: string;
-  category: string;
-  status: string;
+  category: TicketCategory;
+  status: TicketStatus;
   createdBy?: string;
   assignedTo?: string;
 }

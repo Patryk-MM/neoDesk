@@ -1,7 +1,8 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TicketService } from '../services/ticket.service';
 import { Ticket, CreateTicket } from '../models/ticket.interface';
+import { TicketStatus, statusOptions } from '../models/ticket.enums'
 
 @Component({
   selector: 'app-ticket-detail',
@@ -16,7 +17,6 @@ export class TicketDetailComponent implements OnInit {
     category: 0,
     status: 0,
     createdByUserId: 1,
-    createdAt: ''
   };
 
   isLoading = true;
@@ -24,6 +24,7 @@ export class TicketDetailComponent implements OnInit {
   isSaving = false;
   isDeleting = false;
   ticketId: number = 0;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -60,26 +61,26 @@ export class TicketDetailComponent implements OnInit {
       this.editTicket = {
         title: this.ticket.title,
         description: this.ticket.description,
-        category: this.getCategoryValue(this.ticket.category),
-        status: this.getStatusValue(this.ticket.status),
+        category: this.ticket.category,
+        status: this.ticket.status,
         createdByUserId: 1, // Will need to be updated when user system is implemented
         createdAt: new Date(this.ticket.createdAt).toISOString().slice(0, 16)
       };
     }
   }
 
-  getCategoryValue(categoryName: string): number {
-    switch (categoryName.toLowerCase()) {
-      case 'software':
-      case 'oprogramowanie':
-        return 0;
-      case 'hardware':
-      case 'sprzęt':
-        return 1;
-      default:
-        return 0;
-    }
-  }
+  // getCategoryValue(categoryName: string): number {
+  //   switch (categoryName.toLowerCase()) {
+  //     case 'software':
+  //     case 'oprogramowanie':
+  //       return 0;
+  //     case 'hardware':
+  //     case 'sprzęt':
+  //       return 1;
+  //     default:
+  //       return 0;
+  //   }
+  // }
 
   getStatusValue(statusName: string): number {
     switch (statusName.toLowerCase()) {
@@ -156,4 +157,6 @@ export class TicketDetailComponent implements OnInit {
   goBack(): void {
     this.router.navigate(['/']);
   }
+
+  protected readonly statusOptions = statusOptions;
 }
