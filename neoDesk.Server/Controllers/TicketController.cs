@@ -27,15 +27,36 @@ public class TicketController : ControllerBase
         return userIdClaim != null ? int.Parse(userIdClaim.Value) : 0;
     }
 
+    private string? GetRole()
+    {
+        var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+        return userRole;
+    }
+
     // GET api/ticket
     [HttpGet(Name = "GetTickets")]
     public async Task<ActionResult<IEnumerable<TicketDTO>>> Get()
     {
-        var tickets = await _context.Tickets
+        var tickets = new List<Ticket>();
+        var currentUserId = GetCurrentUserId();
+
+        if (GetRole() == "EndUser" || GetRole() == "Technician")
+        {
+            tickets = await _context.Tickets
+            .Include(t => t.CreatedByUser)
+            .Include(t => t.AssignedToUser)
+            .Where(t => t.CreatedByUserId == currentUserId || t.AssignedToUserId == currentUserId)
+            .OrderByDescending(t => t.CreatedAt)
+            .ToListAsync();
+        }
+        else
+        {
+            tickets = await _context.Tickets
             .Include(t => t.CreatedByUser)
             .Include(t => t.AssignedToUser)
             .OrderByDescending(t => t.CreatedAt)
             .ToListAsync();
+        }
 
         var ticketDTOs = tickets.Select(t => new TicketDTO
         {
@@ -103,7 +124,7 @@ public class TicketController : ControllerBase
             Category = createTicketDTO.Category,
             Status = createTicketDTO.Status,
             CreatedByUserId = currentUserId, // Use actual logged-in user
-            // AssignedToUserId is null by default - use separate assign endpoint
+                                             // AssignedToUserId is null by default - use separate assign endpoint
             CreatedAt = DateTime.Now
         };
 
@@ -142,11 +163,11 @@ public class TicketController : ControllerBase
 
         var currentUserId = GetCurrentUserId();
         var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-        
+
         // Check permissions: only creator or admin can edit
         // Technicians can edit if ticket is assigned to them
         bool canEdit = false;
-        
+
         if (userRole == "Admin")
         {
             canEdit = true; // Admins can edit any ticket
@@ -230,10 +251,10 @@ public class TicketController : ControllerBase
 
         var currentUserId = GetCurrentUserId();
         var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-        
+
         // Check permissions for status updates
         bool canUpdateStatus = false;
-        
+
         if (userRole == "Admin")
         {
             canUpdateStatus = true;
@@ -242,7 +263,7 @@ public class TicketController : ControllerBase
         {
             canUpdateStatus = true;
         }
-        else if (ticket.CreatedByUserId == currentUserId && 
+        else if (ticket.CreatedByUserId == currentUserId &&
                  (statusUpdateDTO.Status == Status.New || statusUpdateDTO.Status == Status.Suspended))
         {
             // Users can only reopen or suspend their own tickets
@@ -284,7 +305,7 @@ public class TicketController : ControllerBase
     public async Task<ActionResult<IEnumerable<TicketDTO>>> GetMyTickets()
     {
         var currentUserId = GetCurrentUserId();
-        
+
         var tickets = await _context.Tickets
             .Include(t => t.CreatedByUser)
             .Include(t => t.AssignedToUser)
