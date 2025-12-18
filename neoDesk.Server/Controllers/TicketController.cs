@@ -178,12 +178,6 @@ public class TicketController : ControllerBase
             ticket.AssignedToUserId = updateTicketDTO.AssignedToUserId;
         }
 
-        // Only admins can change creation date
-        if (userRole == "Admin" && updateTicketDTO.CreatedAt.HasValue)
-        {
-            ticket.CreatedAt = updateTicketDTO.CreatedAt.Value;
-        }
-
         await _context.SaveChangesAsync();
 
         return NoContent();

@@ -43,8 +43,6 @@ public class UpdateTicketDTO
     // Optional assignment to user
     public int? AssignedToUserId { get; set; }
     
-    // Optional creation date update (usually only admins should change this)
-    public DateTime? CreatedAt { get; set; }
 }
 
 public class AssignTicketDTO

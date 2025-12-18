@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Ticket, CreateTicket } from '../models/ticket.interface';
+import {Ticket, CreateTicket, UpdateTicket} from '../models/ticket.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketService {
-  // ZMIANA: Używamy ścieżki relatywnej. 
+  // ZMIANA: Używamy ścieżki relatywnej.
   // Angular Proxy (proxy.conf.js) zajmie się przekierowaniem na https://localhost:40443
   private apiUrl = '/api/ticket';
 
@@ -29,7 +29,7 @@ export class TicketService {
     return this.http.post<Ticket>(this.apiUrl, ticket);
   }
 
-  updateTicket(id: number, ticket: CreateTicket): Observable<void> {
+  updateTicket(id: number, ticket: UpdateTicket): Observable<void> {
     return this.http.put<void>(`${this.apiUrl}/${id}`, ticket);
   }
 

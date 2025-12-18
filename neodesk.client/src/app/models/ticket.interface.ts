@@ -19,3 +19,10 @@ export interface CreateTicket {
   createdByUserId: number;
   createdAt?: string; // Optional - will be set by user or default to now
 }
+
+export interface UpdateTicket {
+  title: string;
+  description: string;
+  category: number;
+  status: number;
+}

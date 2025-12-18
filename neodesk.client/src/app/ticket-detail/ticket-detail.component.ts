@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TicketService } from '../services/ticket.service';
-import { Ticket, CreateTicket } from '../models/ticket.interface';
-import { TicketStatus, statusOptions } from '../models/ticket.enums'
+import {Ticket, UpdateTicket} from '../models/ticket.interface';
+import { statusOptions, categoryOptions, getStatusLabel, getCategoryLabel } from '../models/ticket.enums'
 
 @Component({
   selector: 'app-ticket-detail',
@@ -11,12 +11,11 @@ import { TicketStatus, statusOptions } from '../models/ticket.enums'
 })
 export class TicketDetailComponent implements OnInit {
   ticket: Ticket | null = null;
-  editTicket: CreateTicket = {
+  editTicket: UpdateTicket = {
     title: '',
     description: '',
     category: 0,
     status: 0,
-    createdByUserId: 1,
   };
 
   isLoading = true;
@@ -62,42 +61,8 @@ export class TicketDetailComponent implements OnInit {
         title: this.ticket.title,
         description: this.ticket.description,
         category: this.ticket.category,
-        status: this.ticket.status,
-        createdByUserId: 1, // Will need to be updated when user system is implemented
-        createdAt: new Date(this.ticket.createdAt).toISOString().slice(0, 16)
+        status: this.ticket.status
       };
-    }
-  }
-
-  // getCategoryValue(categoryName: string): number {
-  //   switch (categoryName.toLowerCase()) {
-  //     case 'software':
-  //     case 'oprogramowanie':
-  //       return 0;
-  //     case 'hardware':
-  //     case 'sprzęt':
-  //       return 1;
-  //     default:
-  //       return 0;
-  //   }
-  // }
-
-  getStatusValue(statusName: string): number {
-    switch (statusName.toLowerCase()) {
-      case 'new':
-      case 'nowy':
-        return 0;
-      case 'assigned':
-      case 'przypisany':
-        return 1;
-      case 'suspended':
-      case 'wstrzymany':
-        return 2;
-      case 'solved':
-      case 'rozwiązany':
-        return 3;
-      default:
-        return 0;
     }
   }
 
@@ -159,4 +124,7 @@ export class TicketDetailComponent implements OnInit {
   }
 
   protected readonly statusOptions = statusOptions;
+  protected readonly categoryOptions = categoryOptions;
+  protected readonly getStatusLabel = getStatusLabel;
+  protected readonly getCategoryLabel = getCategoryLabel;
 }

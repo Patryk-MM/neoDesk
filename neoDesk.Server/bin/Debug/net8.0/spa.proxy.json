@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:4200",
 "RedirectUrl": "",
 "LaunchCommand": "npm start",
-"WorkingDirectory": "C:\\Users\\Patryk\\source\\repos\\neoDesk\\neoDesk.Server\\..\\neodesk.client",
+"WorkingDirectory": "C:\\Users\\Patryk\\Source\\Repos\\neoDesk\\neoDesk.Server\\..\\neodesk.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }
