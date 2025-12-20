@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Extensions;
 using neoDesk.Server.Data;
 using neoDesk.Server.DTOs;
 using neoDesk.Server.Models;
@@ -66,8 +65,18 @@ public class TicketController : ControllerBase
             CreatedAt = t.CreatedAt.ToString("g"),
             Category = t.Category,
             Status = t.Status,
-            CreatedBy = t.CreatedByUser.Name,
-            AssignedTo = t.AssignedToUser?.Name
+            CreatedBy = new SimpleUserDTO
+            {
+                Id = t.CreatedByUserId,
+                Name = t.CreatedByUser.Name,
+
+            },
+            AssignedTo = new SimpleUserDTO
+            {
+                Id = t.AssignedToUserId,
+                Name = t.AssignedToUser?.Name
+,
+            }
         });
 
         return Ok(ticketDTOs);
@@ -95,8 +104,17 @@ public class TicketController : ControllerBase
             CreatedAt = ticket.CreatedAt.ToString("g"),
             Category = ticket.Category,
             Status = ticket.Status,
-            CreatedBy = ticket.CreatedByUser.Name,
-            AssignedTo = ticket.AssignedToUser?.Name
+            CreatedBy = new SimpleUserDTO
+            {
+                Id = ticket.CreatedByUserId,
+                Name = ticket.CreatedByUser.Name,
+
+            },
+            AssignedTo = new SimpleUserDTO
+            {
+                Id = ticket.AssignedToUserId,
+                Name = ticket.AssignedToUser?.Name
+,           }
         };
 
         return Ok(ticketDTO);
@@ -144,8 +162,18 @@ public class TicketController : ControllerBase
             CreatedAt = ticket.CreatedAt.ToString("g"),
             Category = ticket.Category,
             Status = ticket.Status,
-            CreatedBy = ticket.CreatedByUser.Name,
-            AssignedTo = null // No assignment on creation
+            CreatedBy = new SimpleUserDTO
+            {
+                Id = ticket.CreatedByUserId,
+                Name = ticket.CreatedByUser.Name,
+
+            },
+            AssignedTo = new SimpleUserDTO
+            {
+                Id = ticket.AssignedToUserId,
+                Name = ticket.AssignedToUser?.Name
+,
+            }
         };
 
         return CreatedAtAction(nameof(Get), new { id = ticket.Id }, ticketDTO);
@@ -192,12 +220,6 @@ public class TicketController : ControllerBase
         ticket.Category = updateTicketDTO.Category;
         ticket.Status = updateTicketDTO.Status;
         ticket.UpdatedAt = DateTime.Now;
-
-        // Only admins and technicians can assign tickets
-        if (userRole == "Admin" || userRole == "Technician")
-        {
-            ticket.AssignedToUserId = updateTicketDTO.AssignedToUserId;
-        }
 
         await _context.SaveChangesAsync();
 
@@ -321,8 +343,18 @@ public class TicketController : ControllerBase
             CreatedAt = t.CreatedAt.ToString("g"),
             Category = t.Category,
             Status = t.Status,
-            CreatedBy = t.CreatedByUser.Name,
-            AssignedTo = t.AssignedToUser?.Name
+            CreatedBy = new SimpleUserDTO
+            {
+                Id = t.CreatedByUserId,
+                Name = t.CreatedByUser.Name,
+
+            },
+            AssignedTo = new SimpleUserDTO
+            {
+                Id = t.AssignedToUserId,
+                Name = t.AssignedToUser?.Name
+,
+            }
         });
 
         return Ok(ticketDTOs);

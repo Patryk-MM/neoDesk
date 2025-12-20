@@ -21,7 +21,7 @@ public class Ticket
     
     // Foreign Keys
     public int CreatedByUserId { get; set; }
-    public int? AssignedToUserId { get; set; }
+    public int? AssignedToUserId { get; set; } = null;
     
     // Navigation Properties
     public User CreatedByUser { get; set; } = null!;

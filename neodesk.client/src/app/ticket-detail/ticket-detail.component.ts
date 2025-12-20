@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TicketService } from '../services/ticket.service';
-import {Ticket, UpdateTicket} from '../models/ticket.interface';
+import {AssignTicket, Ticket, UpdateTicket} from '../models/ticket.interface';
 import { statusOptions, categoryOptions, getStatusLabel, getCategoryLabel } from '../models/ticket.enums'
+import {SimpleUserDTO} from "../models/user.interface";
+import {LookupService} from "../services/lookup.service";
 
 @Component({
   selector: 'app-ticket-detail',
@@ -17,18 +19,22 @@ export class TicketDetailComponent implements OnInit {
     category: 0,
     status: 0,
   };
+  assignTicket: AssignTicket = {
+    assignedTo: this.ticket?.assignedTo,
+  }
 
   isLoading = true;
   isEditing = false;
   isSaving = false;
   isDeleting = false;
   ticketId: number = 0;
-
+  technicians: SimpleUserDTO[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private ticketService: TicketService
+    private ticketService: TicketService,
+    private lookupService: LookupService,
   ) {}
 
   ngOnInit(): void {
@@ -63,6 +69,12 @@ export class TicketDetailComponent implements OnInit {
         category: this.ticket.category,
         status: this.ticket.status
       };
+      this.lookupService.getTechnicians().subscribe({
+        next: (data) => {
+          this.technicians = data;
+        },
+        error: (error) => {console.error('Błąd pobierania listy techników: ', error);}
+      })
     }
   }
 

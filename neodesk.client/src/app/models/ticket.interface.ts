@@ -1,4 +1,5 @@
 import {TicketCategory, TicketStatus} from "./ticket.enums";
+import {SimpleUserDTO} from "./user.interface";
 
 export interface Ticket {
   id: number;
@@ -7,8 +8,8 @@ export interface Ticket {
   createdAt: string;
   category: TicketCategory;
   status: TicketStatus;
-  createdBy?: string;
-  assignedTo?: string;
+  createdBy?: SimpleUserDTO;
+  assignedTo?: SimpleUserDTO;
 }
 
 export interface CreateTicket {
@@ -25,4 +26,8 @@ export interface UpdateTicket {
   description: string;
   category: number;
   status: number;
+}
+
+export interface AssignTicket {
+  assignedTo?: SimpleUserDTO;
 }

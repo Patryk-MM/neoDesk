@@ -24,8 +24,8 @@ public class TicketDTO
     public required string CreatedAt { get; set; }
     public required Category Category { get; set; }
     public required Status Status { get; set; }
-    public string? CreatedBy { get; set; }
-    public string? AssignedTo { get; set; }
+    public required SimpleUserDTO CreatedBy { get; set; }
+    public required SimpleUserDTO AssignedTo { get; set; }
 }
 
 public class UpdateTicketDTO
@@ -39,10 +39,6 @@ public class UpdateTicketDTO
     
     public Category Category { get; set; }
     public Status Status { get; set; }
-    
-    // Optional assignment to user
-    public int? AssignedToUserId { get; set; }
-    
 }
 
 public class AssignTicketDTO

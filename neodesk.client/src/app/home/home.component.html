@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div class="flex flex-col items-center m-4 pt-4 border-2 border-base-300 rounded-md">
+<div class="flex flex-col items-center m-4 border-2 border-base-300 rounded-md">
 
   <span class="loading loading-spinner loading-xl" *ngIf="isLoading" aria-label="Loading tickets"></span>
 
@@ -20,7 +20,8 @@
       <th>Status</th>
       <th>Kategoria</th>
       <th>Utworzone przez</th>
-      <th>Akcje</th>
+      <th>Przypisane do</th>
+<!--      <th>Akcje</th>-->
     </tr>
     </thead>
     <tbody>
@@ -33,7 +34,7 @@
           {{ ticket.title }}
         </a>
       </td>
-      <td>{{ ticket.createdAt }}</td>
+      <td class="text-nowrap">{{ ticket.createdAt }}</td>
       <td>
         <div class="badge"
              [class.badge-success]="ticket.status === 0"
@@ -44,16 +45,17 @@
         </div>
       </td>
       <td>{{ getCategoryLabel(ticket.category) }}</td>
-      <td>{{ ticket.createdBy || '-' }}</td>
-      <td>
-        <div class="flex gap-1">
-          <button
-            class="btn btn-xs btn-primary"
-            [routerLink]="['/ticket', ticket.id]">
-            Zobacz
-          </button>
-        </div>
-      </td>
+      <td>{{ ticket.createdBy?.name || '-' }}</td>
+<!--      <td>-->
+<!--        <div class="flex gap-1">-->
+<!--          <button-->
+<!--            class="btn btn-xs btn-primary"-->
+<!--            [routerLink]="['/ticket', ticket.id]">-->
+<!--            Zobacz-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </td>-->
+      <td>{{ ticket.assignedTo?.name || '-' }}</td>
     </tr>
     </tbody>
   </table>

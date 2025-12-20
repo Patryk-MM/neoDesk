@@ -76,14 +76,14 @@
           </div>
         </div>
 
-        <div *ngIf="ticket.createdBy">
+        <div *ngIf="ticket.createdBy?.name">
           <label class="text-sm font-medium text-base-content opacity-70">Utworzone przez</label>
-          <p class="text-base-content">{{ ticket.createdBy }}</p>
+          <p class="text-base-content">{{ ticket.createdBy?.name }}</p>
         </div>
 
-        <div *ngIf="ticket.assignedTo">
+        <div >
           <label class="text-sm font-medium text-base-content opacity-70">Przypisane do</label>
-          <p class="text-base-content">{{ ticket.assignedTo }}</p>
+          <p class="text-base-content">{{ ticket.assignedTo?.name || '-'}}</p>
         </div>
       </div>
     </div>
@@ -141,8 +141,8 @@
             class="select select-bordered select-sm"
             [(ngModel)]="editTicket.status"
             name="status">
-            <option *ngFor="let option of statusOptions" [ngValue]="option.value">
-              {{option.label}}
+            <option *ngFor="let status of statusOptions" [ngValue]="status.value">
+              {{status.label}}
             </option>
           </select>
         </div>
@@ -151,7 +151,20 @@
 
         <div *ngIf="ticket.createdBy" class="text-sm">
           <label class="font-medium text-base-content opacity-70">Utworzone przez</label>
-          <p class="text-base-content">{{ ticket.createdBy }}</p>
+          <p class="text-base-content">{{ ticket.createdBy.name }}</p>
+        </div>
+
+        <!-- Przypisany do -->
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-medium text-base-content">Status</label>
+          <select
+            class="select select-bordered select-sm"
+            [ngModel]="assignTicket.assignedTo?.id"
+            name="assignedTo">
+            <option *ngFor="let technician of technicians" [ngValue]="technician.id">
+              {{technician.name}}
+            </option>
+          </select>
         </div>
       </div>
     </form>
