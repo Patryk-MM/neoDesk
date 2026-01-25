@@ -35,16 +35,12 @@
         </a>
       </td>
       <td class="text-nowrap">{{ ticket.createdAt | date:'dd.MM.yyyy HH:mm' }}</td>
-      <td>
-        <div class="badge"
-             [class.badge-success]="ticket.status === 'New'"
-             [class.badge-warning]="ticket.status === 'Assigned'"
-             [class.badge-error]="ticket.status ==='Suspended'"
-             [class.badge-info]="ticket.status === 'Solved'">
-          {{ getStatusLabel(ticket.status) }}
+      <td class="text-nowrap">
+        <div class="badge" [ngClass]="STATUS_CLASSES[ticket.status]">
+          {{ ticket.status | statusLabel }}
         </div>
       </td>
-      <td>{{ getCategoryLabel(ticket.category) }}</td>
+      <td>{{ ticket.category | categoryLabel }}</td>
       <td>{{ ticket.createdBy?.name || '-' }}</td>
 <!--      <td>-->
 <!--        <div class="flex gap-1">-->

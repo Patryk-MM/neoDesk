@@ -19,6 +19,8 @@ import { StatsComponent } from './stats/stats.component';
 // Auth
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { TicketListComponent } from './ticket-list/ticket-list.component';
+import { CategoryLabelPipe } from './pipes/category-label.pipe';
+import { StatusLabelPipe } from './pipes/status-label.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { TicketListComponent } from './ticket-list/ticket-list.component';
     UserManagementComponent,
     StatsComponent,
     TicketListComponent,
+    CategoryLabelPipe,
+    StatusLabelPipe,
   ],
   imports: [
     BrowserModule,

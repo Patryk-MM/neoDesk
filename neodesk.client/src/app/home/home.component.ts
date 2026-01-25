@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TicketService } from '../services/ticket.service';
 import { Ticket } from '../models/ticket.interface';
 import {statusOptions, categoryOptions, getStatusLabel, getCategoryLabel} from '../models/ticket.enums'
+import {STATUS_CLASSES} from "../models/ticket.constants";
 
 @Component({
   selector: 'app-home',
@@ -40,4 +41,5 @@ export class HomeComponent implements OnInit {
   protected readonly statusOptions = statusOptions;
   protected readonly getStatusLabel = getStatusLabel;
   protected readonly getCategoryLabel = getCategoryLabel;
+  protected readonly STATUS_CLASSES = STATUS_CLASSES;
 }
