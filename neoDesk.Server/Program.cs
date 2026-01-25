@@ -5,11 +5,15 @@ using System.Text;
 using neoDesk.Server.Data;
 using neoDesk.Server.Services;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options => {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 // Add Entity Framework
 builder.Services.AddDbContext<NeoDeskDbContext>(options =>
@@ -22,15 +26,12 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 var secretKey = jwtSettings["SecretKey"];
 
-builder.Services.AddAuthentication(options =>
-{
+builder.Services.AddAuthentication(options => {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-.AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
+.AddJwtBearer(options => {
+    options.TokenValidationParameters = new TokenValidationParameters {
         ValidateIssuer = true,
         ValidateAudience = true,
         ValidateLifetime = true,
@@ -48,13 +49,11 @@ builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
 
 // ZMIEÑ TO: Zamiast pustego AddSwaggerGen(), u¿yj tej konfiguracji:
-builder.Services.AddSwaggerGen(option =>
-{
+builder.Services.AddSwaggerGen(option => {
     option.SwaggerDoc("v1", new OpenApiInfo { Title = "neoDesk API", Version = "v1" });
 
     // Definicja zabezpieczenia (przycisk Authorize)
-    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    {
+    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
         In = ParameterLocation.Header,
         Description = "Wpisz token JWT (bez s³owa Bearer, samo wklejenie tokena wystarczy)",
         Name = "Authorization",
@@ -81,10 +80,8 @@ builder.Services.AddSwaggerGen(option =>
 });
 
 // Add CORS for development
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(policy =>
-    {
+builder.Services.AddCors(options => {
+    options.AddDefaultPolicy(policy => {
         policy.AllowAnyOrigin()
                .AllowAnyMethod()
                .AllowAnyHeader();
@@ -97,8 +94,7 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
     app.UseSwaggerUI();
 }

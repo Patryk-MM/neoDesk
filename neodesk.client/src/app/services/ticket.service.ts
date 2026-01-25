@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Ticket, CreateTicket, UpdateTicket} from '../models/ticket.interface';
+import {Ticket, CreateTicket, UpdateTicket, AssignTicket} from '../models/ticket.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class TicketService {
 
   constructor(private http: HttpClient) { }
 
-  getTickets(): Observable<Ticket[]> {
+  getTickets(sortOrder: string | null): Observable<Ticket[]> {
     return this.http.get<Ticket[]>(this.apiUrl);
   }
 
@@ -35,5 +35,9 @@ export class TicketService {
 
   deleteTicket(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  assignTicket(ticketId: number, assignedTo: number | null): Observable<void>{
+    return this.http.put<void>(`${this.apiUrl}/${ticketId}/assign`, assignedTo);
   }
 }

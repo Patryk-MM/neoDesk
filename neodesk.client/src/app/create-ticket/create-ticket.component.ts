@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { TicketService } from '../services/ticket.service';
-import { CreateTicket } from '../models/ticket.interface';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {TicketService} from '../services/ticket.service';
+import {CreateTicket} from '../models/ticket.interface';
+import {TicketCategory, TicketStatus} from "../models/ticket.enums";
 
 @Component({
   selector: 'app-create-ticket',
@@ -12,8 +13,8 @@ export class CreateTicketComponent {
   ticket: CreateTicket = {
     title: '',
     description: '',
-    category: 0, // Software
-    status: 0,   // New
+    category: TicketCategory.Software,
+    status: TicketStatus.New,
     createdByUserId: 1, // Default user for now
     createdAt: ''
   };

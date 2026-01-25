@@ -68,10 +68,10 @@
         <div class="grid justify-center">
           <label class="text-sm font-medium text-base-content opacity-70">Status</label>
           <div class="badge"
-               [class.badge-success]="ticket.status === 0"
-               [class.badge-warning]="ticket.status === 1"
-               [class.badge-error]="ticket.status === 2"
-               [class.badge-info]="ticket.status === 3">
+               [class.badge-success]="ticket.status === 'New'"
+               [class.badge-warning]="ticket.status === 'Assigned'"
+               [class.badge-error]="ticket.status === 'Suspended'"
+               [class.badge-info]="ticket.status === 'Solved'">
             {{ getStatusLabel(ticket.status) }}
           </div>
         </div>
@@ -156,11 +156,14 @@
 
         <!-- Przypisany do -->
         <div class="flex flex-col gap-2">
-          <label class="text-sm font-medium text-base-content">Status</label>
+          <label class="text-sm font-medium text-base-content">Przypisane do</label>
           <select
             class="select select-bordered select-sm"
-            [ngModel]="assignTicket.assignedTo?.id"
+            [ngModel]="ticket.assignedTo?.id"
+            (ngModelChange)="onTechnicianChange($event)"
+            [disabled]="isLoading"
             name="assignedTo">
+            <option [ngValue]="null">Nieprzypisany</option>
             <option *ngFor="let technician of technicians" [ngValue]="technician.id">
               {{technician.name}}
             </option>

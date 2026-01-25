@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   getTickets(): void {
     this.isLoading = true;
-    this.ticketService.getTickets().subscribe({
+    this.ticketService.getTickets(null).subscribe({
       next: (result) => {
         this.tickets = result;
         this.isLoading = false;

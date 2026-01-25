@@ -15,6 +15,7 @@ export class LoginComponent {
   };
 
   isLoggingIn = false;
+  isLoggedId = false;
   errorMessage = '';
   returnUrl = '/';
 
@@ -40,6 +41,7 @@ export class LoginComponent {
       next: (response) => {
         console.log('Login successful:', response);
         this.router.navigate([this.returnUrl]);
+        this.isLoggedId = true;
       },
       error: (error) => {
         console.error('Login error:', error);

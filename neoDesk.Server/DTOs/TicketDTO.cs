@@ -21,7 +21,7 @@ public class TicketDTO
     public int Id { get; set; }
     public required string Title { get; set; }
     public required string Description { get; set; }
-    public required string CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; set; }
     public required Category Category { get; set; }
     public required Status Status { get; set; }
     public required SimpleUserDTO CreatedBy { get; set; }
@@ -43,9 +43,6 @@ public class UpdateTicketDTO
 
 public class AssignTicketDTO
 {
-    [Required]
-    public int TicketId { get; set; }
-    
     public int? AssignedToUserId { get; set; } // null to unassign
 }
 

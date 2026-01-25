@@ -10,14 +10,14 @@ export class TicketListComponent {
   eStatus = TicketStatus;
   eCategory = TicketCategory;
 
-  statusLabels: Record<number, string> = {
+  statusLabels: Record<string, string> = {
     [TicketStatus.New]: 'Nowy',
     [TicketStatus.Assigned]: 'Przypisany',
     [TicketStatus.Suspended]: 'Zawieszony',
     [TicketStatus.Solved]: 'Rozwiązany'
   }
 
-  categoryLabels: Record<number, string> = {
+  categoryLabels: Record<string, string> = {
     [TicketCategory.Software]: 'Oprogramowanie',
     [TicketCategory.Hardware]: 'Sprzęt'
   }

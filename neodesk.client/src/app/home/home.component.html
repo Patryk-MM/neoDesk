@@ -34,13 +34,13 @@
           {{ ticket.title }}
         </a>
       </td>
-      <td class="text-nowrap">{{ ticket.createdAt }}</td>
+      <td class="text-nowrap">{{ ticket.createdAt | date:'dd.MM.yyyy HH:mm' }}</td>
       <td>
         <div class="badge"
-             [class.badge-success]="ticket.status === 0"
-             [class.badge-warning]="ticket.status === 1"
-             [class.badge-error]="ticket.status === 2"
-             [class.badge-info]="ticket.status === 3">
+             [class.badge-success]="ticket.status === 'New'"
+             [class.badge-warning]="ticket.status === 'Assigned'"
+             [class.badge-error]="ticket.status ==='Suspended'"
+             [class.badge-info]="ticket.status === 'Solved'">
           {{ getStatusLabel(ticket.status) }}
         </div>
       </td>

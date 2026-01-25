@@ -2,15 +2,15 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {TicketService} from "../services/ticket.service";
 
 export enum TicketStatus {
-  New = 0,
-  Assigned = 1,
-  Suspended = 2,
-  Solved = 3
+  New = 'New',
+  Assigned = 'Assigned',
+  Suspended = 'Suspended',
+  Solved = 'Solved',
 }
 
 export enum TicketCategory {
-  Software = 0,
-  Hardware = 1
+  Software = 'Software',
+  Hardware = 'Hardware',
 }
 
 // Helper list for the dropdown

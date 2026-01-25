@@ -1,8 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { TicketService } from '../services/ticket.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {TicketService} from '../services/ticket.service';
 import {AssignTicket, Ticket, UpdateTicket} from '../models/ticket.interface';
-import { statusOptions, categoryOptions, getStatusLabel, getCategoryLabel } from '../models/ticket.enums'
+import {
+  statusOptions,
+  categoryOptions,
+  getStatusLabel,
+  getCategoryLabel,
+  TicketCategory,
+  TicketStatus
+} from '../models/ticket.enums'
 import {SimpleUserDTO} from "../models/user.interface";
 import {LookupService} from "../services/lookup.service";
 
@@ -16,11 +23,11 @@ export class TicketDetailComponent implements OnInit {
   editTicket: UpdateTicket = {
     title: '',
     description: '',
-    category: 0,
-    status: 0,
+    category: TicketCategory.Software,
+    status: TicketStatus.Solved,
   };
   assignTicket: AssignTicket = {
-    assignedTo: this.ticket?.assignedTo,
+    assignedToUserId: this.ticket?.assignedTo?.id,
   }
 
   isLoading = true;
@@ -35,7 +42,8 @@ export class TicketDetailComponent implements OnInit {
     private router: Router,
     private ticketService: TicketService,
     private lookupService: LookupService,
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -73,7 +81,9 @@ export class TicketDetailComponent implements OnInit {
         next: (data) => {
           this.technicians = data;
         },
-        error: (error) => {console.error('Błąd pobierania listy techników: ', error);}
+        error: (error) => {
+          console.error('Błąd pobierania listy techników: ', error);
+        }
       })
     }
   }
@@ -135,8 +145,30 @@ export class TicketDetailComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  protected onTechnicianChange(newUserId: number | null): void {
+    if (!this.ticket) return;
+
+    this.isLoading = true;
+
+
+
+    this.ticketService.assignTicket(this.ticket.id, newUserId).subscribe({
+      next: () => {
+        this.loadTicket();
+        console.log('Technik zmieniony.');
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Błąd w trakcie zmiany technika.', error);
+        this.isLoading = false;
+
+      }
+    })
+  }
+
   protected readonly statusOptions = statusOptions;
   protected readonly categoryOptions = categoryOptions;
   protected readonly getStatusLabel = getStatusLabel;
   protected readonly getCategoryLabel = getCategoryLabel;
+
 }
