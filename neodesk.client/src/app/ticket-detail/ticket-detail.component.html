@@ -123,7 +123,7 @@
             class="select select-bordered select-sm"
             [(ngModel)]="editTicket.category"
             name="category">
-            <option *ngFor="let category of categoryOptions" [ngValue]="category.value">
+            <option *ngFor="let category of CATEGORY_OPTIONS" [ngValue]="category.value">
               {{category.label}}
             </option>
           </select>
@@ -136,7 +136,7 @@
             class="select select-bordered select-sm"
             [(ngModel)]="editTicket.status"
             name="status">
-            <option *ngFor="let status of statusOptions" [ngValue]="status.value">
+            <option *ngFor="let status of STATUS_OPTIONS" [ngValue]="status.value">
               {{status.label}}
             </option>
           </select>

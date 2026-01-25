@@ -12,7 +12,7 @@ import {
 } from '../models/ticket.enums'
 import {SimpleUserDTO} from "../models/user.interface";
 import {LookupService} from "../services/lookup.service";
-import {STATUS_CLASSES} from "../models/ticket.constants";
+import {STATUS_CLASSES, STATUS_OPTIONS, CATEGORY_OPTIONS} from "../models/ticket.constants";
 
 @Component({
   selector: 'app-ticket-detail',
@@ -167,10 +167,8 @@ export class TicketDetailComponent implements OnInit {
     })
   }
 
-  protected readonly statusOptions = statusOptions;
-  protected readonly categoryOptions = categoryOptions;
-  protected readonly getStatusLabel = getStatusLabel;
-  protected readonly getCategoryLabel = getCategoryLabel;
 
   protected readonly STATUS_CLASSES = STATUS_CLASSES;
+  protected readonly STATUS_OPTIONS = STATUS_OPTIONS;
+  protected readonly CATEGORY_OPTIONS = CATEGORY_OPTIONS;
 }
