@@ -14,14 +14,38 @@
   <table class="table table-sm table-zebra" *ngIf="!isLoading && tickets && tickets.length > 0">
     <thead>
     <tr class="text-lg">
-      <th>Id</th>
-      <th>Tytuł</th>
-      <th>Utworzono</th>
-      <th>Status</th>
-      <th>Kategoria</th>
+      <th (click)="setSortingParams(SortOptions.Id)" class="cursor-pointer select-none">
+        Id
+        <span *ngIf="httpParams.sortBy === SortOptions.Id">
+    {{ httpParams.sortDir === SortDirection.Asc ? '⬆️' : '⬇️' }}
+    </span>
+      </th>
+      <th (click)="setSortingParams(SortOptions.Title)" class="cursor-pointer select-none">
+        Tytuł
+        <span *ngIf="httpParams.sortBy === SortOptions.Title">
+    {{ httpParams.sortDir === SortDirection.Asc ? '⬆️' : '⬇️' }}
+    </span>
+      </th>
+      <th (click)="setSortingParams(SortOptions.CreatedAt)" class="cursor-pointer select-none">
+        Utworzone
+        <span *ngIf="httpParams.sortBy === SortOptions.CreatedAt">
+    {{ httpParams.sortDir === SortDirection.Asc ? '⬆️' : '⬇️' }}
+    </span>
+      </th>
+      <th (click)="setSortingParams(SortOptions.Status)" class="cursor-pointer select-none">
+        Status
+        <span *ngIf="httpParams.sortBy === SortOptions.Status">
+    {{ httpParams.sortDir === SortDirection.Asc ? '⬆️' : '⬇️' }}
+    </span>
+      </th>
+      <th (click)="setSortingParams(SortOptions.Category)" class="cursor-pointer select-none">
+        Kategoria
+        <span *ngIf="httpParams.sortBy === SortOptions.Category">
+    {{ httpParams.sortDir === SortDirection.Asc ? '⬆️' : '⬇️' }}
+    </span>
+      </th>
       <th>Utworzone przez</th>
       <th>Przypisane do</th>
-<!--      <th>Akcje</th>-->
     </tr>
     </thead>
     <tbody>
@@ -42,15 +66,15 @@
       </td>
       <td>{{ ticket.category | categoryLabel }}</td>
       <td>{{ ticket.createdBy?.name || '-' }}</td>
-<!--      <td>-->
-<!--        <div class="flex gap-1">-->
-<!--          <button-->
-<!--            class="btn btn-xs btn-primary"-->
-<!--            [routerLink]="['/ticket', ticket.id]">-->
-<!--            Zobacz-->
-<!--          </button>-->
-<!--        </div>-->
-<!--      </td>-->
+      <!--      <td>-->
+      <!--        <div class="flex gap-1">-->
+      <!--          <button-->
+      <!--            class="btn btn-xs btn-primary"-->
+      <!--            [routerLink]="['/ticket', ticket.id]">-->
+      <!--            Zobacz-->
+      <!--          </button>-->
+      <!--        </div>-->
+      <!--      </td>-->
       <td>{{ ticket.assignedTo?.name || '-' }}</td>
     </tr>
     </tbody>

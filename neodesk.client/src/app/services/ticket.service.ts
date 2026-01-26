@@ -1,20 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {Ticket, CreateTicket, UpdateTicket, AssignTicket} from '../models/ticket.interface';
+import {TicketFilterParams} from "../models/ticket.params";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketService {
-  // ZMIANA: Używamy ścieżki relatywnej.
-  // Angular Proxy (proxy.conf.js) zajmie się przekierowaniem na https://localhost:40443
   private apiUrl = '/api/ticket';
 
   constructor(private http: HttpClient) { }
 
-  getTickets(sortOrder: string | null): Observable<Ticket[]> {
-    return this.http.get<Ticket[]>(this.apiUrl);
+  getTickets(params: TicketFilterParams) {
+    let httpParams: HttpParams = new HttpParams();
+
+    if (params.sortBy) httpParams =  httpParams.set('sortBy', params.sortBy);
+    if (params.sortDir) httpParams = httpParams.set('sortDir', params.sortDir);
+
+    if (params.searchTerm) httpParams = httpParams.set('searchTerm', params.searchTerm);
+
+    params.statuses?.forEach(s => httpParams = httpParams.append('statuses', s));
+    params.categories?.forEach(c => httpParams = httpParams.append('categories', c));
+
+    return this.http.get<Ticket[]>(this.apiUrl, {params: httpParams});
   }
 
   getMyTickets(): Observable<Ticket[]> {

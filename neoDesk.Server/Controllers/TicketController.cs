@@ -7,6 +7,7 @@ using neoDesk.Server.DTOs;
 using neoDesk.Server.Models;
 using System.Security.Claims;
 using neoDesk.Server.Helpers;
+using System.Collections.Immutable;
 
 namespace neoDesk.Server.Controllers;
 
@@ -51,6 +52,8 @@ public class TicketController : ControllerBase {
         if (filters.Categories != null && filters.Categories.Any()) {
             query = query.Where(t => filters.Categories.Contains(t.Category));        
         }
+
+        query = query.OrderBy($"{filters.SortBy} {filters.SortDir}");
 
         var result = await query.Select(t => new TicketDTO {
             Id = t.Id,
