@@ -6,6 +6,9 @@ namespace neoDesk.Server.Helpers {
         public SortDirection? SortDir { get; set; } = SortDirection.Asc;
 
 
+        public int PageIndex { get; set; } = 1;
+        public int PageSize { get; set; } = 1;
+
         public string? SearchTerm { get; set; }
         public List<Status>? Statuses { get; set; }
         public List<Category>? Categories { get; set; }

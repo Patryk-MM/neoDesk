@@ -17,6 +17,9 @@ export interface TicketFilterParams {
   sortBy?: SortOptions;
   sortDir?: SortDirection;
 
+  pageIndex?: number;
+  pageSize: number;
+
   searchTerm?: string;
   statuses?: TicketStatus[];
   categories?: TicketCategory[];

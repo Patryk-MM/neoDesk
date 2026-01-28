@@ -89,3 +89,7 @@
     </div>
   </div>
 </div>
+<div>
+  <button (click)="onChangePage(httpParams.pageIndex! - 1)" [disabled]="httpParams.pageIndex === 1"> < </button>
+  <button (click)="onChangePage(httpParams.pageIndex! + 1)" [disabled]="httpParams.pageIndex === totalPages"> > </button>
+</div>

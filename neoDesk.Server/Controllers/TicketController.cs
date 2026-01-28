@@ -33,29 +33,33 @@ public class TicketController : ControllerBase {
 
     // GET api/ticket
     [HttpGet(Name = "GetTickets")]
-    public async Task<ActionResult<IEnumerable<TicketDTO>>> Get([FromQuery] TicketFilterParams filters) {
+    public async Task<ActionResult<IEnumerable<TicketDTO>>> Get([FromQuery] TicketFilterParams parameters) {
         var query = _context.Tickets.AsQueryable();
+        var ticketCount = query.Count();
+
         var currentUserId = GetCurrentUserId();
 
         if (GetRole() == "EndUser" || GetRole() == "Technician") {
             query = query.Where(t => t.CreatedByUserId == currentUserId || t.AssignedToUserId == currentUserId);
         }
 
-        if (!string.IsNullOrWhiteSpace(filters.SearchTerm)) {
-            query = query.Where(t => t.Title.Contains(filters.SearchTerm) || t.Description.Contains(filters.SearchTerm));
+        if (!string.IsNullOrWhiteSpace(parameters.SearchTerm)) {
+            query = query.Where(t => t.Title.Contains(parameters.SearchTerm) || t.Description.Contains(parameters.SearchTerm));
         }
 
-        if (filters.Statuses != null && filters.Statuses.Any()) {
-            query = query.Where(t => filters.Statuses.Contains(t.Status));
+        if (parameters.Statuses != null && parameters.Statuses.Any()) {
+            query = query.Where(t => parameters.Statuses.Contains(t.Status));
         }
 
-        if (filters.Categories != null && filters.Categories.Any()) {
-            query = query.Where(t => filters.Categories.Contains(t.Category));        
+        if (parameters.Categories != null && parameters.Categories.Any()) {
+            query = query.Where(t => parameters.Categories.Contains(t.Category));        
         }
 
-        query = query.OrderBy($"{filters.SortBy} {filters.SortDir}");
+        query = query.OrderBy($"{parameters.SortBy} {parameters.SortDir}");
 
-        var result = await query.Select(t => new TicketDTO {
+        query = query.Skip((parameters.PageIndex - 1) * parameters.PageSize).Take(parameters.PageSize);
+
+        var items = await query.Select(t => new TicketDTO {
             Id = t.Id,
             Title = t.Title,
             Description = t.Description,
@@ -72,7 +76,12 @@ public class TicketController : ControllerBase {
             }
         }).ToListAsync();
 
-        return Ok(result);
+        return Ok(new PaginatedResult<TicketDTO> {
+            Items = items,
+            TotalCount = ticketCount,
+            PageIndex = parameters.PageIndex,
+            PageSize = parameters.PageSize
+        });
     }
 
     // GET api/ticket/5

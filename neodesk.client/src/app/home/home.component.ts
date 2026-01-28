@@ -13,9 +13,14 @@ export class HomeComponent implements OnInit {
   public tickets: Ticket[] = [];
   public isLoading = true;
   public title = 'neodesk.client';
+
+  public ticketCount = 0;
+
   httpParams: TicketFilterParams = {
     sortBy: SortOptions.Id,
-    sortDir: SortDirection.Asc
+    sortDir: SortDirection.Asc,
+    pageIndex: 1,
+    pageSize: 1,
   }
 
   constructor(private ticketService: TicketService) {}
@@ -28,7 +33,8 @@ export class HomeComponent implements OnInit {
     this.isLoading = true;
     this.ticketService.getTickets(params).subscribe({
       next: (result) => {
-        this.tickets = result;
+        this.tickets = result.items;
+        this.ticketCount = result.totalCount;
         this.isLoading = false;
       },
       error: (err) => {
@@ -44,7 +50,6 @@ export class HomeComponent implements OnInit {
         ? SortDirection.Desc
         : SortDirection.Asc;
     } else {
-
       this.httpParams.sortBy = sorting;
       this.httpParams.sortDir = SortDirection.Asc;
     }
@@ -54,6 +59,15 @@ export class HomeComponent implements OnInit {
 
   refreshTickets(): void {
     this.getTickets(this.httpParams);
+  }
+
+  onChangePage(page: number): void {
+    this.httpParams.pageIndex = page;
+    this.getTickets(this.httpParams);
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.ticketCount / this.httpParams.pageSize);
   }
 
   protected readonly STATUS_CLASSES = STATUS_CLASSES;
