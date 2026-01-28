@@ -21,6 +21,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { TicketListComponent } from './ticket-list/ticket-list.component';
 import { CategoryLabelPipe } from './pipes/category-label.pipe';
 import { StatusLabelPipe } from './pipes/status-label.pipe';
+import {MultiSelectComponent} from "./components/multi-select/multi-select.component";
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { StatusLabelPipe } from './pipes/status-label.pipe';
       UserRound
     }),
     QuillModule.forRoot(),
-    FormsModule
+    FormsModule,
+    MultiSelectComponent
   ],
   providers: [
     {

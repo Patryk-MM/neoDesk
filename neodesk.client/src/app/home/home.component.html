@@ -89,7 +89,22 @@
     </div>
   </div>
 </div>
-<div>
-  <button (click)="onChangePage(httpParams.pageIndex! - 1)" [disabled]="httpParams.pageIndex === 1"> < </button>
-  <button (click)="onChangePage(httpParams.pageIndex! + 1)" [disabled]="httpParams.pageIndex === totalPages"> > </button>
+
+<div class="grid grid-cols-3">
+  <div class="flex justify-center items-center gap-2">
+    <span>Wpisów na stronę: </span>
+    <select [(ngModel)]="httpParams.pageSize" (ngModelChange)="onPageSizeChanged()" class="select select-bordered select-sm">
+      <option  *ngFor="let size of pageSizes" [ngValue]="size">{{ size }}</option>
+    </select>
+  </div>
+
+  <div class="join justify-center">
+    <button class="join-item btn" (click)="onChangePage(httpParams.pageIndex! - 1)" [disabled]="httpParams.pageIndex === 1"> < </button>
+    <div>
+      <span class="join-item btn btn-ghost no-animation cursor-default">Strona {{httpParams.pageIndex}} z {{totalPages}}</span>
+    </div>
+    <button class="join-item btn" (click)="onChangePage(httpParams.pageIndex! + 1)" [disabled]="httpParams.pageIndex === totalPages"> > </button>
+  </div>
 </div>
+
+<app-multi-select [options]="statusOptions"></app-multi-select>
