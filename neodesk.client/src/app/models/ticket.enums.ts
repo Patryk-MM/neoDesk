@@ -1,6 +1,3 @@
-import {ActivatedRoute, Router} from "@angular/router";
-import {TicketService} from "../services/ticket.service";
-
 export enum TicketStatus {
   New = 'New',
   Assigned = 'Assigned',

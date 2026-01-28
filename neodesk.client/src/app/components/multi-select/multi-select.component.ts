@@ -1,5 +1,7 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
+import {Ticket} from "../../models/ticket.interface";
+import {TicketStatus} from "../../models/ticket.enums";
 
 @Component({
   selector: 'app-multi-select',
@@ -30,7 +32,10 @@ import {NgForOf, NgIf} from "@angular/common";
 })
 export class MultiSelectComponent<T> {
   @Input() options: {value: T, label: string}[] = [];
-  @Output() selected: EventEmitter<T[]> = new EventEmitter();
+  @Output() selectedChange: EventEmitter<T[]> = new EventEmitter();
+
+  protected selected: T[] = [];
+
   isOpen = false;
 
 
@@ -40,6 +45,14 @@ export class MultiSelectComponent<T> {
 
   onCheckChange(event: Event, value: T): void {
     const isChecked = (event.target as HTMLInputElement).checked;
-    console.log(value, isChecked);
+
+    if (isChecked) {
+      this.selected.push(value);
+    } else {
+      this.selected = this.selected.filter(t => t !== value)
+    }
+
+    this.selectedChange.emit(this.selected);
+    console.log(this.selected);
   }
 }

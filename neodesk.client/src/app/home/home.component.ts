@@ -3,7 +3,7 @@ import {TicketService} from '../services/ticket.service';
 import {Ticket} from '../models/ticket.interface';
 import {STATUS_CLASSES} from "../models/ticket.constants";
 import {SortDirection, SortOptions, TicketFilterParams} from "../models/ticket.params";
-import {statusOptions} from "../models/ticket.enums";
+import {statusOptions, TicketStatus} from "../models/ticket.enums";
 
 @Component({
   selector: 'app-home',
@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
     sortDir: SortDirection.Asc,
     pageIndex: 1,
     pageSize: 1,
+    statuses: []
   }
 
   constructor(private ticketService: TicketService) {}
@@ -71,6 +72,11 @@ export class HomeComponent implements OnInit {
 
   onPageSizeChanged(): void {
     this.httpParams.pageIndex = 1;
+    this.getTickets(this.httpParams);
+  }
+
+  onStatusFilterChange(statusList: TicketStatus[]): void {
+    this.httpParams.statuses = statusList
     this.getTickets(this.httpParams);
   }
 

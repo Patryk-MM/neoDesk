@@ -107,4 +107,4 @@
   </div>
 </div>
 
-<app-multi-select [options]="statusOptions"></app-multi-select>
+<app-multi-select [options]="statusOptions" (selectedChange)="onStatusFilterChange($event)"></app-multi-select>
