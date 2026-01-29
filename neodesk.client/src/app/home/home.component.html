@@ -1,10 +1,8 @@
-<div class="flex flex-col m-4 p-4 border-2 border-base-300 rounded-md">
-  <div class="flex justify-between items-center mb-4">
-    <p class="text-xl">Lista zgłoszeń</p>
-    <button class="btn btn-ghost btn-sm" (click)="refreshTickets()">
-      Odśwież
-    </button>
-  </div>
+<div class="flex flex-row m-4 p-2 border-2 border-base-300 rounded-md">
+
+  <app-multi-select class="m-1" [options]="STATUS_OPTIONS" [placeholder]="'Status'" (selectedChange)="onStatusFilterChange($event)"></app-multi-select>
+  <app-multi-select class="m-1" [options]="CATEGORY_OPTIONS" [placeholder]="'Kategoria'" (selectedChange)="onCategoryFilterChange($event)"></app-multi-select>
+
 </div>
 
 <div class="flex flex-col items-center m-4 border-2 border-base-300 rounded-md">
@@ -99,12 +97,11 @@
   </div>
 
   <div class="join justify-center">
-    <button class="join-item btn" (click)="onChangePage(httpParams.pageIndex! - 1)" [disabled]="httpParams.pageIndex === 1"> < </button>
+    <button class="join-item btn btn-sm" (click)="onChangePage(httpParams.pageIndex! - 1)" [disabled]="httpParams.pageIndex === 1"> < </button>
     <div>
-      <span class="join-item btn btn-ghost no-animation cursor-default">Strona {{httpParams.pageIndex}} z {{totalPages}}</span>
+      <span class="join-item btn btn-sm btn-ghost no-animation cursor-default">Strona {{httpParams.pageIndex}} z {{totalPages}}</span>
     </div>
-    <button class="join-item btn" (click)="onChangePage(httpParams.pageIndex! + 1)" [disabled]="httpParams.pageIndex === totalPages"> > </button>
+    <button class="join-item btn btn-sm" (click)="onChangePage(httpParams.pageIndex! + 1)" [disabled]="httpParams.pageIndex === totalPages"> > </button>
   </div>
 </div>
 
-<app-multi-select [options]="statusOptions" (selectedChange)="onStatusFilterChange($event)"></app-multi-select>

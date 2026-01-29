@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {TicketService} from '../services/ticket.service';
 import {Ticket} from '../models/ticket.interface';
-import {STATUS_CLASSES} from "../models/ticket.constants";
+import {CATEGORY_OPTIONS, STATUS_CLASSES, STATUS_OPTIONS} from "../models/ticket.constants";
 import {SortDirection, SortOptions, TicketFilterParams} from "../models/ticket.params";
-import {statusOptions, TicketStatus} from "../models/ticket.enums";
+import {statusOptions, TicketCategory, TicketStatus} from "../models/ticket.enums";
 
 @Component({
   selector: 'app-home',
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     sortBy: SortOptions.Id,
     sortDir: SortDirection.Asc,
     pageIndex: 1,
-    pageSize: 1,
+    pageSize: 10,
     statuses: []
   }
 
@@ -80,6 +80,11 @@ export class HomeComponent implements OnInit {
     this.getTickets(this.httpParams);
   }
 
+  onCategoryFilterChange(categoryList: TicketCategory[]) {
+    this.httpParams.categories = categoryList
+    this.getTickets(this.httpParams);
+  }
+
   get totalPages(): number {
     return Math.ceil(this.ticketCount / this.httpParams.pageSize);
   }
@@ -88,4 +93,8 @@ export class HomeComponent implements OnInit {
   protected readonly SortOptions = SortOptions;
   protected readonly SortDirection = SortDirection;
   protected readonly statusOptions = statusOptions;
+  protected readonly STATUS_OPTIONS = STATUS_OPTIONS;
+  protected readonly CATEGORY_OPTIONS = CATEGORY_OPTIONS;
+
+
 }

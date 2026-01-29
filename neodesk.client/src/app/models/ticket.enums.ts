@@ -12,11 +12,13 @@ export enum TicketCategory {
 
 // Helper list for the dropdown
 export const statusOptions: { value: TicketStatus; label: string }[] = [
-  { value: TicketStatus.New, label: 'Nowy' },
-  { value: TicketStatus.Assigned, label: 'Przypisany' },
-  { value: TicketStatus.Suspended, label: 'Wstrzymany' },
-  { value: TicketStatus.Solved, label: 'Rozwiązany' }
+  { value: TicketStatus.New, label: 'Nowe' },
+  { value: TicketStatus.Assigned, label: 'W realizacji' },
+  { value: TicketStatus.Suspended, label: 'Zawieszone' },
+  { value: TicketStatus.Solved, label: 'Rozwiązane' }
 ];
+
+
 
 export const categoryOptions: {value: TicketCategory; label: string }[] = [
   {value: TicketCategory.Software, label: 'Oprogramowanie' },
