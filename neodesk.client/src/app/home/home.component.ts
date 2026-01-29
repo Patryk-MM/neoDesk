@@ -92,7 +92,6 @@ export class HomeComponent implements OnInit {
   protected readonly STATUS_CLASSES = STATUS_CLASSES;
   protected readonly SortOptions = SortOptions;
   protected readonly SortDirection = SortDirection;
-  protected readonly statusOptions = statusOptions;
   protected readonly STATUS_OPTIONS = STATUS_OPTIONS;
   protected readonly CATEGORY_OPTIONS = CATEGORY_OPTIONS;
 
