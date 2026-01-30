@@ -1,4 +1,4 @@
-﻿  using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace neoDesk.Server.Models;
 
@@ -18,6 +18,8 @@ public class Ticket
     
     public Category Category { get; set; }
     public Status Status { get; set; }
+
+    public ICollection<Comment> Comments { get; set; }
     
     // Foreign Keys
     public int CreatedByUserId { get; set; }

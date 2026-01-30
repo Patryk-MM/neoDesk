@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using neoDesk.Server.Data;
 
@@ -11,9 +12,11 @@ using neoDesk.Server.Data;
 namespace neoDesk.Server.Migrations
 {
     [DbContext(typeof(NeoDeskDbContext))]
-    partial class NeoDeskDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260130181455_Comments added")]
+    partial class Commentsadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,17 +40,10 @@ namespace neoDesk.Server.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("TicketId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TicketId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
@@ -100,7 +96,7 @@ namespace neoDesk.Server.Migrations
                         {
                             Id = 1,
                             Category = 1,
-                            CreatedAt = new DateTime(2026, 1, 28, 19, 54, 34, 951, DateTimeKind.Local).AddTicks(1179),
+                            CreatedAt = new DateTime(2026, 1, 28, 19, 14, 55, 334, DateTimeKind.Local).AddTicks(4551),
                             CreatedByUserId = 1,
                             Description = "Drukarka nie drukuje dokumentów",
                             Status = 0,
@@ -111,7 +107,7 @@ namespace neoDesk.Server.Migrations
                             Id = 2,
                             AssignedToUserId = 3,
                             Category = 0,
-                            CreatedAt = new DateTime(2026, 1, 29, 19, 54, 34, 951, DateTimeKind.Local).AddTicks(1187),
+                            CreatedAt = new DateTime(2026, 1, 29, 19, 14, 55, 334, DateTimeKind.Local).AddTicks(4558),
                             CreatedByUserId = 2,
                             Description = "Aplikacja CRM wyświetla błąd przy logowaniu",
                             Status = 1,
@@ -161,52 +157,33 @@ namespace neoDesk.Server.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 1, 30, 19, 54, 34, 780, DateTimeKind.Local).AddTicks(3990),
+                            CreatedAt = new DateTime(2026, 1, 30, 19, 14, 55, 164, DateTimeKind.Local).AddTicks(969),
                             Email = "admin@neodesk.com",
                             IsActive = true,
                             Name = "Administrator",
-                            PasswordHash = "$2a$11$SqQnYsxgopJSF7OlAT7Tvuqfx651Ir2WX2HTobqQqHbQJAOqhvORG",
+                            PasswordHash = "$2a$11$var1yAhH6/qg2lxpPRAAz.WwsYWrm6QhKEAvVrro7Go2cVcTsEiF6",
                             Role = 2
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 1, 30, 19, 54, 34, 865, DateTimeKind.Local).AddTicks(8277),
+                            CreatedAt = new DateTime(2026, 1, 30, 19, 14, 55, 249, DateTimeKind.Local).AddTicks(4022),
                             Email = "jan.kowalski@company.com",
                             IsActive = true,
                             Name = "Jan Kowalski",
-                            PasswordHash = "$2a$11$VoK5y6n0EoyMKQAj7wbTV.biBERxLpzQLGAYi5y8C1TKHuPaueacW",
+                            PasswordHash = "$2a$11$uyT6vFPe1Y3DJ7Snl8/1WOug9xulxzjEAF533XGgyAbCA8Ata6cme",
                             Role = 0
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 1, 30, 19, 54, 34, 951, DateTimeKind.Local).AddTicks(875),
+                            CreatedAt = new DateTime(2026, 1, 30, 19, 14, 55, 334, DateTimeKind.Local).AddTicks(4199),
                             Email = "anna.nowak@company.com",
                             IsActive = true,
                             Name = "Anna Nowak",
-                            PasswordHash = "$2a$11$lJymyZfvQM1m1nsSnuAnr.hwSypDIU2HQC5Dhnys8/vaGPfnNhOIa",
+                            PasswordHash = "$2a$11$avpJjQahY4UMuOwxvxzd2.LNbMJXGEMVaicMsnd7fqeioAXrxYlWi",
                             Role = 1
                         });
-                });
-
-            modelBuilder.Entity("neoDesk.Server.Models.Comment", b =>
-                {
-                    b.HasOne("neoDesk.Server.Models.Ticket", "Ticket")
-                        .WithMany("Comments")
-                        .HasForeignKey("TicketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("neoDesk.Server.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Ticket");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("neoDesk.Server.Models.Ticket", b =>
@@ -225,11 +202,6 @@ namespace neoDesk.Server.Migrations
                     b.Navigation("AssignedToUser");
 
                     b.Navigation("CreatedByUser");
-                });
-
-            modelBuilder.Entity("neoDesk.Server.Models.Ticket", b =>
-                {
-                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("neoDesk.Server.Models.User", b =>

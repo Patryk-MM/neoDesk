@@ -24,6 +24,7 @@ public class TicketDTO
     public required DateTime CreatedAt { get; set; }
     public required Category Category { get; set; }
     public required Status Status { get; set; }
+    public required IEnumerable<CommentDTO> Comments { get; set; }
     public required SimpleUserDTO CreatedBy { get; set; }
     public required SimpleUserDTO AssignedTo { get; set; }
 }

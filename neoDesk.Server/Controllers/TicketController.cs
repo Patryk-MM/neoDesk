@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Dynamic.Core;
 using neoDesk.Server.Data;
 using neoDesk.Server.DTOs;
-using neoDesk.Server.Models;
-using System.Security.Claims;
 using neoDesk.Server.Helpers;
-using System.Collections.Immutable;
+using neoDesk.Server.Models;
+using System.Linq.Dynamic.Core;
+using System.Net.Sockets;
+using System.Security.Claims;
 
 namespace neoDesk.Server.Controllers;
 
@@ -34,8 +34,12 @@ public class TicketController : ControllerBase {
     // GET api/ticket
     [HttpGet(Name = "GetTickets")]
     public async Task<ActionResult<IEnumerable<TicketDTO>>> Get([FromQuery] TicketFilterParams parameters) {
-        var query = _context.Tickets.AsQueryable();
-        var ticketCount = query.Count();
+        var query = _context.Tickets
+            .Include(t => t.CreatedByUser)
+            .Include(t => t.AssignedToUser)
+            .Include(t => t.Comments)
+                .ThenInclude(c => c.User)
+            .AsQueryable();
 
         var currentUserId = GetCurrentUserId();
 
@@ -52,8 +56,10 @@ public class TicketController : ControllerBase {
         }
 
         if (parameters.Categories != null && parameters.Categories.Any()) {
-            query = query.Where(t => parameters.Categories.Contains(t.Category));        
+            query = query.Where(t => parameters.Categories.Contains(t.Category));
         }
+
+        var ticketCount = query.Count();
 
         query = query.OrderBy($"{parameters.SortBy} {parameters.SortDir}");
 
@@ -73,7 +79,17 @@ public class TicketController : ControllerBase {
             AssignedTo = new SimpleUserDTO {
                 Id = t.AssignedToUserId,
                 Name = t.AssignedToUser != null ? t.AssignedToUser.Name : null
-            }
+            },
+            Comments = t.Comments.Select(c => new CommentDTO {
+                Id = c.Id,
+                Content = c.Content,
+                TicketId = c.TicketId,
+                CreatedAt = c.CreatedAt,
+                User = new SimpleUserDTO {
+                    Id = c.User.Id,
+                    Name = c.User.Name
+                }
+            }),
         }).ToListAsync();
 
         return Ok(new PaginatedResult<TicketDTO> {
@@ -90,6 +106,8 @@ public class TicketController : ControllerBase {
         var ticket = await _context.Tickets
             .Include(t => t.CreatedByUser)
             .Include(t => t.AssignedToUser)
+            .Include(t => t.Comments)
+                .ThenInclude(c => c.User)
             .FirstOrDefaultAsync(t => t.Id == id);
 
         if (ticket == null) {
@@ -112,7 +130,17 @@ public class TicketController : ControllerBase {
                 Id = ticket.AssignedToUserId,
                 Name = ticket.AssignedToUser?.Name
 ,
-            }
+            },
+            Comments = ticket.Comments.Select(c => new CommentDTO {
+                Id = c.Id,
+                Content = c.Content,
+                TicketId = c.TicketId,
+                CreatedAt = c.CreatedAt,
+                User = new SimpleUserDTO {
+                    Id = c.User.Id,
+                    Name = c.User.Name
+                }
+            })
         };
 
         return Ok(ticketDTO);
@@ -164,7 +192,17 @@ public class TicketController : ControllerBase {
                 Id = ticket.AssignedToUserId,
                 Name = ticket.AssignedToUser?.Name
 ,
-            }
+            },
+            Comments = ticket.Comments.Select(c => new CommentDTO {
+                Id = c.Id,
+                Content = c.Content,
+                TicketId = c.TicketId,
+                CreatedAt = c.CreatedAt,
+                User = new SimpleUserDTO {
+                    Id = c.User.Id,
+                    Name = c.User.Name
+                }
+            })
         };
 
         return CreatedAtAction(nameof(Get), new { id = ticket.Id }, ticketDTO);
@@ -328,7 +366,17 @@ public class TicketController : ControllerBase {
                 Id = t.AssignedToUserId,
                 Name = t.AssignedToUser?.Name
 ,
-            }
+            },
+            Comments = t.Comments.Select(c => new CommentDTO {
+                Id = c.Id,
+                Content = c.Content,
+                TicketId = c.TicketId,
+                CreatedAt = c.CreatedAt,
+                User = new SimpleUserDTO {
+                    Id = c.User.Id,
+                    Name = c.User.Name
+                }
+            })
         });
 
         return Ok(ticketDTOs);

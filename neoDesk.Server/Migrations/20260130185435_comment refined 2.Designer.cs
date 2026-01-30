@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using neoDesk.Server.Data;
 
@@ -11,9 +12,11 @@ using neoDesk.Server.Data;
 namespace neoDesk.Server.Migrations
 {
     [DbContext(typeof(NeoDeskDbContext))]
-    partial class NeoDeskDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260130185435_comment refined 2")]
+    partial class commentrefined2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
