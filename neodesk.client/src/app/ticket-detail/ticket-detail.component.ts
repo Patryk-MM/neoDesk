@@ -3,10 +3,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {TicketService} from '../services/ticket.service';
 import {AssignTicket, Ticket, UpdateTicket} from '../models/ticket.interface';
 import {
-  statusOptions,
-  categoryOptions,
-  getStatusLabel,
-  getCategoryLabel,
   TicketCategory,
   TicketStatus
 } from '../models/ticket.enums'
@@ -150,7 +146,6 @@ export class TicketDetailComponent implements OnInit {
     if (!this.ticket) return;
 
     this.isLoading = true;
-
 
 
     this.ticketService.assignTicket(this.ticket.id, newUserId).subscribe({

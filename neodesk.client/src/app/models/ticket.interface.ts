@@ -1,5 +1,6 @@
 import {TicketCategory, TicketStatus} from "./ticket.enums";
 import {SimpleUserDTO} from "./user.interface";
+import {Comment} from './comment.interface';
 
 export interface Ticket {
   id: number;
@@ -10,6 +11,7 @@ export interface Ticket {
   status: TicketStatus;
   createdBy?: SimpleUserDTO;
   assignedTo?: SimpleUserDTO | null;
+  comments: Comment[];
 }
 
 export interface CreateTicket {

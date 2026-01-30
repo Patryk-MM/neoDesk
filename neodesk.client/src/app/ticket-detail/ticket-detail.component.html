@@ -47,11 +47,17 @@
     <!-- View Mode -->
     <div *ngIf="!isEditing" class="flex w-full gap-4">
       <!-- LEFT SIDE - Content -->
-
         <div class="w-2/3 p-4 border rounded-lg">
           <h3 class="text-lg font-semibold mb-2">Opis</h3>
           <div class="prose max-w-none" [innerHTML]="ticket.description"></div>
+          <div class="chat chat-start" *ngFor="let comment of ticket.comments">
+            <div class="chat-header">{{comment.user.name}}
+              <time class="text-xs opacity-50">{{comment.createdAt | date:'dd.MM.yyyy HH:mm'}}</time>
+            </div>
+            <div class="chat-bubble">{{comment.content}}</div>
+          </div>
         </div>
+
 
       <!-- RIGHT SIDE - Metadata -->
       <div class="w-1/3 p-4 border rounded-lg space-y-4">
