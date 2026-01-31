@@ -338,6 +338,24 @@ public class TicketController : ControllerBase {
         return NoContent();
     }
 
+    [HttpPost("comments/add")]
+    public async Task<ActionResult> AddComment([FromBody] CreateCommentDTO dto) {
+        if (!ModelState.IsValid) {
+            return BadRequest(ModelState);
+        }
+
+        _context.Comments.Add(new Comment {
+            Content = dto.Content,
+            CreatedAt = DateTime.Now,
+            TicketId = dto.TicketId,
+            UserId = dto.UserId,
+        });
+
+        await _context.SaveChangesAsync();
+
+        return Ok();
+    }
+
     // GET api/ticket/my-tickets
     [HttpGet("my-tickets")]
     public async Task<ActionResult<IEnumerable<TicketDTO>>> GetMyTickets() {

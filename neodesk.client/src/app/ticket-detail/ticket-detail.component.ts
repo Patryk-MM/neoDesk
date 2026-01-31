@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TicketService} from '../services/ticket.service';
 import {AssignTicket, Ticket, UpdateTicket} from '../models/ticket.interface';
+import {CreateCommentDTO} from '../models/comment.interface';
 import {
   TicketCategory,
   TicketStatus
@@ -18,7 +19,8 @@ import {User} from "../models/auth.interface";
   styleUrl: './ticket-detail.component.scss'
 })
 export class TicketDetailComponent implements OnInit {
-  ticket: Ticket | null = null;
+  ticket: Ticket = {} as Ticket;
+  currentUser: User = {} as User;
   editTicket: UpdateTicket = {
     title: '',
     description: '',
@@ -28,12 +30,17 @@ export class TicketDetailComponent implements OnInit {
   assignTicket: AssignTicket = {
     assignedToUserId: this.ticket?.assignedTo?.id,
   }
+  newComment: CreateCommentDTO = {
+    ticketId: this.ticket.id,
+    userId: this.currentUser.id,
+    content: ''
+  };
 
-  currentUser: User = {} as User;
   isLoading = true;
   isEditing = false;
   isSaving = false;
   isDeleting = false;
+  isCommenting = false;
   ticketId: number = 0;
   technicians: SimpleUserDTO[] = [];
 
@@ -105,6 +112,12 @@ export class TicketDetailComponent implements OnInit {
     }
   }
 
+
+  toggleComment(): void {
+    this.isCommenting = !this.isCommenting;
+  }
+
+
   saveTicket(): void {
     if (!this.editTicket.title.trim() || !this.editTicket.description.trim()) {
       alert('Proszę wypełnić wszystkie wymagane pola');
@@ -148,6 +161,35 @@ export class TicketDetailComponent implements OnInit {
 
   onDescriptionChange(content: any): void {
     this.editTicket.description = content.html || content.text || '';
+  }
+
+  onCommentContentChange(content: any): void {
+    this.newComment.content = content.html || content.text || '';
+  }
+
+  addComment(): void {
+    if (!this.newComment.content.trim()) {
+      alert('Proszę uzupełnić treść komentarza');
+      return;
+    }
+
+    this.isSaving = true; // 1. Turn Spinner ON
+    this.newComment.ticketId = this.ticketId;
+    this.newComment.userId = this.currentUser.id;
+    this.ticketService.addComment(this.newComment).subscribe({
+      next: () => {
+        alert('Pomyślnie dodano komentarz!');
+        this.loadTicket();
+        this.isSaving = false; // 2. Turn Spinner OFF (Only after success)
+
+        // Optional: Clear the input after success
+        this.newComment.content = '';
+      },
+      error: (error) => {
+        console.error('Error adding comment:', error); // (Fixed typo: 'deleting ticket')
+        this.isSaving = false; // 3. Turn Spinner OFF (Even if it fails)
+      }
+    });
   }
 
   goBack(): void {

@@ -64,15 +64,6 @@
       </td>
       <td>{{ ticket.category | categoryLabel }}</td>
       <td>{{ ticket.createdBy?.name || '-' }}</td>
-      <!--      <td>-->
-      <!--        <div class="flex gap-1">-->
-      <!--          <button-->
-      <!--            class="btn btn-xs btn-primary"-->
-      <!--            [routerLink]="['/ticket', ticket.id]">-->
-      <!--            Zobacz-->
-      <!--          </button>-->
-      <!--        </div>-->
-      <!--      </td>-->
       <td>{{ ticket.assignedTo?.name || '-' }}</td>
     </tr>
     </tbody>

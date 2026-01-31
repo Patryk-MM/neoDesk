@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {Ticket, CreateTicket, UpdateTicket, AssignTicket} from '../models/ticket.interface';
 import {TicketFilterParams} from "../models/ticket.params";
 import {PaginatedResult} from "../models/paginatedresult";
+import {CreateCommentDTO} from "../models/comment.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -52,5 +53,9 @@ export class TicketService {
 
   assignTicket(ticketId: number, assignedTo: number | null): Observable<void>{
     return this.http.put<void>(`${this.apiUrl}/${ticketId}/assign`, assignedTo);
+  }
+
+  addComment(comment: CreateCommentDTO): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/comments/add`, comment);
   }
 }

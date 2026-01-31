@@ -22,3 +22,7 @@ body {
   min-height: 100%;
   width: 100%;
 }
+
+.btn-soft {
+  @apply border-none shadow-none bg-opacity-50 hover:bg-opacity-60;
+}

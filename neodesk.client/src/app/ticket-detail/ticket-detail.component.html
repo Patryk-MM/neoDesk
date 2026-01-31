@@ -167,9 +167,9 @@
         </div>
       </div>
     </form>
-    <div class="flex flex-col p-4 border border-base-300 rounded-md">
+    <div *ngIf="ticket.comments.length > 0" class="flex flex-col p-4 border border-base-300 rounded-md">
       <div class="chat" [ngClass]="currentUser.id === comment.user.id ? 'chat-end' : 'chat-start'" *ngFor="let comment of ticket.comments">
-        <div class="chat-header">{{comment.user.name}}
+        <div class="chat-header mb-1">{{comment.user.name}}
           <time class="text-xs opacity-50">{{comment.createdAt | date:'dd.MM.yyyy HH:mm'}}</time>
         </div>
         <div class="chat-bubble"
@@ -177,11 +177,19 @@
              [innerHTML]="comment.content">
         </div>
       </div>
+      <quill-editor *ngIf="isCommenting" (onContentChanged)="onCommentContentChange($event)" placeholder="Wpisz treść komentarza...">
 
+      </quill-editor>
     </div>
     <div class="text-end">
-      <button class="btn btn-warning btn-sm w-48">
+      <button class="btn btn-secondary btn-sm w-48" *ngIf="!isCommenting" (click)="toggleComment()">
         Dodaj komentarz
+      </button>
+      <button class="btn btn-error btn-sm w-48 mr-2" *ngIf="isCommenting" (click)="toggleComment()">
+        Anuluj
+      </button>
+      <button class="btn btn-success btn-sm w-48" *ngIf="isCommenting" (click)="addComment()">
+        Zapisz
       </button>
     </div>
   </div>
