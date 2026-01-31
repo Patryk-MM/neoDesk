@@ -9,6 +9,8 @@ import {
 import {SimpleUserDTO} from "../models/user.interface";
 import {LookupService} from "../services/lookup.service";
 import {STATUS_CLASSES, STATUS_OPTIONS, CATEGORY_OPTIONS} from "../models/ticket.constants";
+import {AuthService} from "../services/auth.service";
+import {User} from "../models/auth.interface";
 
 @Component({
   selector: 'app-ticket-detail',
@@ -27,6 +29,7 @@ export class TicketDetailComponent implements OnInit {
     assignedToUserId: this.ticket?.assignedTo?.id,
   }
 
+  currentUser: User = {} as User;
   isLoading = true;
   isEditing = false;
   isSaving = false;
@@ -39,10 +42,19 @@ export class TicketDetailComponent implements OnInit {
     private router: Router,
     private ticketService: TicketService,
     private lookupService: LookupService,
+    private authService: AuthService,
   ) {
   }
 
   ngOnInit(): void {
+    this.authService.getCurrentUser().subscribe({
+      next: (user: User) => {
+      this.currentUser = user;},
+      error: (error) => {
+        console.error(error);
+      }
+    })
+
     this.route.params.subscribe(params => {
       this.ticketId = +params['id'];
       this.loadTicket();
