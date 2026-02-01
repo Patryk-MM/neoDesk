@@ -14,7 +14,7 @@ public class Ticket
     public string Description { get; set; } = string.Empty;
     
     public DateTime CreatedAt { get; set; } = DateTime.Now;
-    public DateTime? UpdatedAt { get; set; }
+    public DateTime? LastUpdatedAt { get; set; }
     
     public Category Category { get; set; }
     public Status Status { get; set; }

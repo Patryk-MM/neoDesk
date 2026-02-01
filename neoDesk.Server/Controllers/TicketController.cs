@@ -70,6 +70,7 @@ public class TicketController : ControllerBase {
             Title = t.Title,
             Description = t.Description,
             CreatedAt = t.CreatedAt,
+            LastUpdatedAt = t.LastUpdatedAt,
             Category = t.Category,
             Status = t.Status,
             CreatedBy = new SimpleUserDTO {
@@ -163,8 +164,7 @@ public class TicketController : ControllerBase {
             Description = createTicketDTO.Description,
             Category = createTicketDTO.Category,
             Status = createTicketDTO.Status,
-            CreatedByUserId = currentUserId, // Use actual logged-in user
-                                             // AssignedToUserId is null by default - use separate assign endpoint
+            CreatedByUserId = currentUserId,
             CreatedAt = DateTime.Now
         };
 
@@ -181,17 +181,16 @@ public class TicketController : ControllerBase {
             Title = ticket.Title,
             Description = ticket.Description,
             CreatedAt = ticket.CreatedAt,
+            LastUpdatedAt = ticket.LastUpdatedAt,
             Category = ticket.Category,
             Status = ticket.Status,
             CreatedBy = new SimpleUserDTO {
                 Id = ticket.CreatedByUserId,
                 Name = ticket.CreatedByUser.Name,
-
             },
             AssignedTo = new SimpleUserDTO {
                 Id = ticket.AssignedToUserId,
                 Name = ticket.AssignedToUser?.Name
-,
             },
             Comments = ticket.Comments.Select(c => new CommentDTO {
                 Id = c.Id,
@@ -242,7 +241,7 @@ public class TicketController : ControllerBase {
         ticket.Description = updateTicketDTO.Description;
         ticket.Category = updateTicketDTO.Category;
         ticket.Status = updateTicketDTO.Status;
-        ticket.UpdatedAt = DateTime.Now;
+        ticket.LastUpdatedAt = DateTime.Now;
 
         await _context.SaveChangesAsync();
 
@@ -272,7 +271,7 @@ public class TicketController : ControllerBase {
 
         // Jeśli assignedToUserId jest null, kod przechodzi tutaj i wpisuje null do bazy
         ticket.AssignedToUserId = assignedToUserId;
-        ticket.UpdatedAt = DateTime.Now;
+        ticket.LastUpdatedAt = DateTime.Now;
 
         await _context.SaveChangesAsync();
 
@@ -316,7 +315,7 @@ public class TicketController : ControllerBase {
         }
 
         ticket.Status = statusUpdateDTO.Status;
-        ticket.UpdatedAt = DateTime.Now;
+        ticket.LastUpdatedAt = DateTime.Now;
 
         await _context.SaveChangesAsync();
 
@@ -350,6 +349,9 @@ public class TicketController : ControllerBase {
             TicketId = dto.TicketId,
             UserId = dto.UserId,
         });
+
+        var ticket = _context.Tickets.Find(dto.TicketId);
+        ticket.LastUpdatedAt = DateTime.Now;
 
         await _context.SaveChangesAsync();
 

@@ -5,7 +5,8 @@ export enum SortOptions {
   Title = 'Title',
   CreatedAt = 'CreatedAt',
   Status = 'Status',
-  Category = 'Category'
+  Category = 'Category',
+  LastUpdatedAt = 'LastUpdatedAt',
 }
 
 export enum SortDirection {

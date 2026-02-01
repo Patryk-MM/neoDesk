@@ -30,6 +30,12 @@
     {{ httpParams.sortDir === SortDirection.Asc ? '⬆️' : '⬇️' }}
     </span>
       </th>
+      <th (click)="setSortingParams(SortOptions.LastUpdatedAt)" class="cursor-pointer select-none">
+        Ostatnio modyfikowane
+        <span *ngIf="httpParams.sortBy === SortOptions.LastUpdatedAt">
+    {{ httpParams.sortDir === SortDirection.Asc ? '⬆️' : '⬇️' }}
+    </span>
+      </th>
       <th (click)="setSortingParams(SortOptions.Status)" class="cursor-pointer select-none">
         Status
         <span *ngIf="httpParams.sortBy === SortOptions.Status">
@@ -57,6 +63,7 @@
         </a>
       </td>
       <td class="text-nowrap">{{ ticket.createdAt | date:'dd.MM.yyyy HH:mm' }}</td>
+      <td class="text-nowrap">{{ ticket.lastUpdatedAt | date:'dd.MM.yyyy HH:mm' }}</td>
       <td class="text-nowrap">
         <div class="badge" [ngClass]="STATUS_CLASSES[ticket.status]">
           {{ ticket.status | statusLabel }}

@@ -18,6 +18,7 @@ namespace neoDesk.Server.Helpers {
         Id,
         Title,
         CreatedAt,
+        LastUpdatedAt,
         Status,
         Category
     }

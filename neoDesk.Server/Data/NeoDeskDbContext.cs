@@ -48,7 +48,7 @@ public class NeoDeskDbContext : DbContext {
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin123"),
                 Role = UserRole.Admin,
                 IsActive = true,
-                CreatedAt = DateTime.Now
+                CreatedAt = DateTime.Now,
             },
             new User {
                 Id = 2,
@@ -76,6 +76,7 @@ public class NeoDeskDbContext : DbContext {
                 Title = "Problem z drukarką",
                 Description = "Drukarka nie drukuje dokumentów",
                 CreatedAt = DateTime.Now.AddDays(-2),
+                LastUpdatedAt = DateTime.Now.AddDays(-2),
                 Category = Category.Hardware,
                 Status = Status.New,
                 CreatedByUserId = 1
@@ -85,6 +86,7 @@ public class NeoDeskDbContext : DbContext {
                 Title = "Błąd w aplikacji",
                 Description = "Aplikacja CRM wyświetla błąd przy logowaniu",
                 CreatedAt = DateTime.Now.AddDays(-1),
+                LastUpdatedAt = DateTime.Now.AddDays(-1),
                 Category = Category.Software,
                 Status = Status.Assigned,
                 CreatedByUserId = 2,

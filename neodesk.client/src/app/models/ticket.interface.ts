@@ -7,6 +7,7 @@ export interface Ticket {
   title: string;
   description: string;
   createdAt: string;
+  lastUpdatedAt: string;
   category: TicketCategory;
   status: TicketStatus;
   createdBy?: SimpleUserDTO;
