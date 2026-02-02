@@ -19,7 +19,7 @@ public class Ticket
     public Category Category { get; set; }
     public Status Status { get; set; }
 
-    public ICollection<Comment> Comments { get; set; }
+    public ICollection<Comment> Comments { get; set; } = new List<Comment>();
     
     // Foreign Keys
     public int CreatedByUserId { get; set; }

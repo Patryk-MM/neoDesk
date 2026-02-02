@@ -9,20 +9,17 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers()
     .AddJsonOptions(options => {
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 
-// Add Entity Framework
 builder.Services.AddDbContext<NeoDeskDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add Authentication Services - THIS IS IMPORTANT!
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
-// Add JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 var secretKey = jwtSettings["SecretKey"];
 
@@ -44,15 +41,12 @@ builder.Services.AddAuthentication(options => {
 
 builder.Services.AddAuthorization();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-// ... (wczeœniejszy kod)
+
 builder.Services.AddEndpointsApiExplorer();
 
-// ZMIEÑ TO: Zamiast pustego AddSwaggerGen(), u¿yj tej konfiguracji:
 builder.Services.AddSwaggerGen(option => {
     option.SwaggerDoc("v1", new OpenApiInfo { Title = "neoDesk API", Version = "v1" });
 
-    // Definicja zabezpieczenia (przycisk Authorize)
     option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
         In = ParameterLocation.Header,
         Description = "Wpisz token JWT (bez s³owa Bearer, samo wklejenie tokena wystarczy)",
@@ -62,7 +56,6 @@ builder.Services.AddSwaggerGen(option => {
         Scheme = "Bearer"
     });
 
-    // Wymaganie zabezpieczenia dla endpointów
     option.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
@@ -79,7 +72,6 @@ builder.Services.AddSwaggerGen(option => {
     });
 });
 
-// Add CORS for development
 builder.Services.AddCors(options => {
     options.AddDefaultPolicy(policy => {
         policy.AllowAnyOrigin()
@@ -93,7 +85,6 @@ var app = builder.Build();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
     app.UseSwaggerUI(options => {
@@ -104,7 +95,6 @@ if (app.Environment.IsDevelopment()) {
 app.UseHttpsRedirection();
 app.UseCors();
 
-// Add Authentication & Authorization middleware
 app.UseAuthentication();
 app.UseAuthorization();
 

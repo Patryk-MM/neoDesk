@@ -5,20 +5,24 @@ using neoDesk.Server.Data;
 using neoDesk.Server.DTOs;
 using neoDesk.Server.Helpers;
 using neoDesk.Server.Models;
+using neoDesk.Server.Services;
 using System.Linq.Dynamic.Core;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 
 namespace neoDesk.Server.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize] // Require authentication for all endpoints
+[Authorize]
 public class TicketController : ControllerBase {
     private readonly NeoDeskDbContext _context;
+    private readonly IEmailService _emailService;
 
-    public TicketController(NeoDeskDbContext context) {
+    public TicketController(NeoDeskDbContext context, IEmailService emailService) {
         _context = context;
+        _emailService = emailService;
     }
 
     private int GetCurrentUserId() {
@@ -165,11 +169,15 @@ public class TicketController : ControllerBase {
             Category = createTicketDTO.Category,
             Status = createTicketDTO.Status,
             CreatedByUserId = currentUserId,
-            CreatedAt = DateTime.Now
+            CreatedAt = DateTime.Now,
+            LastUpdatedAt = DateTime.Now
         };
-
+            
         _context.Tickets.Add(ticket);
         await _context.SaveChangesAsync();
+
+        var user = _context.Users.FirstOrDefault(t => t.Id == currentUserId);
+        await _emailService.SendEmailAsync(user.Email);
 
         // Reload with user data
         await _context.Entry(ticket)
@@ -192,16 +200,7 @@ public class TicketController : ControllerBase {
                 Id = ticket.AssignedToUserId,
                 Name = ticket.AssignedToUser?.Name
             },
-            Comments = ticket.Comments.Select(c => new CommentDTO {
-                Id = c.Id,
-                Content = c.Content,
-                TicketId = c.TicketId,
-                CreatedAt = c.CreatedAt,
-                User = new SimpleUserDTO {
-                    Id = c.User.Id,
-                    Name = c.User.Name
-                }
-            })
+            Comments = new List<CommentDTO>()
         };
 
         return CreatedAtAction(nameof(Get), new { id = ticket.Id }, ticketDTO);
