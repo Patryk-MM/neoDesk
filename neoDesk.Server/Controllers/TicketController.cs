@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AspNetCoreGeneratedDocument;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using neoDesk.Server.Data;
 using neoDesk.Server.DTOs;
+using neoDesk.Server.Emails.Models;
 using neoDesk.Server.Helpers;
 using neoDesk.Server.Models;
 using neoDesk.Server.Services;
@@ -176,8 +178,12 @@ public class TicketController : ControllerBase {
         _context.Tickets.Add(ticket);
         await _context.SaveChangesAsync();
 
+        var model = new TicketEmailModel {
+            Ticket = ticket,
+        };
+
         var user = _context.Users.FirstOrDefault(t => t.Id == currentUserId);
-        await _emailService.SendEmailAsync(user.Email);
+        await _emailService.SendEmailAsync("TicketCreated.cshtml", user.Email, $"neoDesk | Utworzono zgłoszenie #{ticket.Id}: {ticket.Title}", model);
 
         // Reload with user data
         await _context.Entry(ticket)

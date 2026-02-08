@@ -22,6 +22,6 @@ export interface TicketFilterParams {
   pageSize: number;
 
   searchTerm?: string;
-  statuses?: TicketStatus[];
-  categories?: TicketCategory[];
+  statuses: TicketStatus[];
+  categories: TicketCategory[];
 }

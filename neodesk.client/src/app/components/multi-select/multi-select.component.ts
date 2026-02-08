@@ -36,7 +36,7 @@ export class MultiSelectComponent<T> {
   @Input() placeholder: string = 'Select...';
   @Output() selectedChange: EventEmitter<T[]> = new EventEmitter();
 
-  protected selected: T[] = [];
+  @Input() selected: T[] = [];
   isOpen = false;
 
   constructor(private eRef: ElementRef) {}
@@ -63,7 +63,7 @@ export class MultiSelectComponent<T> {
     const isChecked = (event.target as HTMLInputElement).checked;
 
     if (isChecked) {
-      this.selected.push(value);
+      this.selected = [...this.selected, value];
     } else {
       this.selected = this.selected.filter(t => t !== value);
     }

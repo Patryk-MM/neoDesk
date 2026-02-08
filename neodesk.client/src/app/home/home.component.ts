@@ -3,7 +3,7 @@ import {TicketService} from '../services/ticket.service';
 import {Ticket} from '../models/ticket.interface';
 import {CATEGORY_OPTIONS, STATUS_CLASSES, STATUS_OPTIONS} from "../models/ticket.constants";
 import {SortDirection, SortOptions, TicketFilterParams} from "../models/ticket.params";
-import {statusOptions, TicketCategory, TicketStatus} from "../models/ticket.enums";
+import {TicketCategory, TicketStatus} from "../models/ticket.enums";
 
 @Component({
   selector: 'app-home',
@@ -20,11 +20,12 @@ export class HomeComponent implements OnInit {
   public pageSizes: number[] = [1,2,5,10,20,30,50]
 
   httpParams: TicketFilterParams = {
-    sortBy: SortOptions.Id,
-    sortDir: SortDirection.Asc,
+    sortBy: SortOptions.LastUpdatedAt,
+    sortDir: SortDirection.Desc,
     pageIndex: 1,
     pageSize: 10,
-    statuses: []
+    statuses: [TicketStatus.New, TicketStatus.Assigned, TicketStatus.Suspended],
+    categories: []
   }
 
   constructor(private ticketService: TicketService) {}

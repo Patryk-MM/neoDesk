@@ -1,0 +1,17 @@
+﻿@using neoDesk.Server.Emails.Models
+@model TicketEmailModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .btn { background: #4f46e5; color: white; padding: 10px; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <p>Your ticket <strong>#@Model.Ticket.Id</strong>: @Model.Ticket.Title has been created.</p>
+
+    <br />
+    <a href="@Model.TicketUrl" class="btn">View Ticket</a>
+</body>
+</html>

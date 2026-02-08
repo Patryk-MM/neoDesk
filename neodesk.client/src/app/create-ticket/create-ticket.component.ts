@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {TicketService} from '../services/ticket.service';
 import {CreateTicket} from '../models/ticket.interface';
 import {TicketCategory, TicketStatus} from "../models/ticket.enums";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-create-ticket',
@@ -20,9 +21,11 @@ export class CreateTicketComponent {
   };
 
   isSubmitting = false;
+  userRole = this.authService.getCurrentUserRole();
 
   constructor(
     private ticketService: TicketService,
+    private authService: AuthService,
     private router: Router
   ) {
     // Set current date/time as default

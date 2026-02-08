@@ -3,4 +3,5 @@
 [Oo]bj/
 *.user
 *.suo
-*.eml
+neoDesk.Server/Emails/SentEmails
+neoDesk.Server/Emails/Inbox

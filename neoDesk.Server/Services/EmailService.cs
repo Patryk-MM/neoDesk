@@ -1,35 +1,33 @@
 ﻿using MimeKit;
+using RazorLight;
 using System.Runtime.CompilerServices;
 
 namespace neoDesk.Server.Services {
     public class EmailService : IEmailService {
 
         private readonly IWebHostEnvironment _env;
-        private readonly IConfiguration _config;
-
-        public EmailService(IWebHostEnvironment env, IConfiguration config) {
-            _config = config;
+        private readonly RazorLightEngine _engine;
+        public EmailService(IWebHostEnvironment env) {
             _env = env;
+            _engine = new RazorLightEngineBuilder()
+                .UseFileSystemProject(Path.Combine(_env.ContentRootPath, "Emails\\Templates"))
+                .UseMemoryCachingProvider()
+                .Build();
         }
 
-        public async Task SendEmailAsync(string toEmail) {
+        public async Task SendEmailAsync<T>(string templateFile, string toEmail, string subject, T model) {
             var message = new MimeMessage();
         
             message.From.Add(new MailboxAddress("Neodesk Service", "notifications@neodesk.com"));
             message.To.Add(new MailboxAddress("", toEmail));
 
-            message.Subject = "Test message";
+            message.Subject = subject;
 
-            message.Body = new TextPart("html") { 
-                Text = """
-                
-                Dear user,
+            message.Body = new TextPart("html") {
+                Text = await _engine.CompileRenderAsync(templateFile, model)
+            };
 
-                this is a test message from Neodesk.
-                
-                """ };
-
-            var folder = Path.Combine(_env.ContentRootPath, "SentEmails");
+            var folder = Path.Combine(_env.ContentRootPath, "Emails\\SentEmails");
             Directory.CreateDirectory(folder);
             var fileName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss}_{toEmail}.eml";
 

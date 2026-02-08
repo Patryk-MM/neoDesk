@@ -177,11 +177,11 @@
              [innerHTML]="comment.content">
         </div>
       </div>
-      <quill-editor *ngIf="isCommenting" (onContentChanged)="onCommentContentChange($event)" placeholder="Wpisz treść komentarza...">
+      <quill-editor *ngIf="isCommenting && !isEditing" (onContentChanged)="onCommentContentChange($event)" placeholder="Wpisz treść komentarza...">
 
       </quill-editor>
     </div>
-    <div class="text-end">
+    <div class="text-end" *ngIf="!isEditing">
       <button class="btn btn-secondary btn-sm w-48" *ngIf="!isCommenting" (click)="toggleComment()">
         Dodaj komentarz
       </button>
