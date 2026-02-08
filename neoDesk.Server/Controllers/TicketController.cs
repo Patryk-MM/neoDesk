@@ -174,7 +174,7 @@ public class TicketController : ControllerBase {
             CreatedAt = DateTime.Now,
             LastUpdatedAt = DateTime.Now
         };
-            
+
         _context.Tickets.Add(ticket);
         await _context.SaveChangesAsync();
 
@@ -250,13 +250,22 @@ public class TicketController : ControllerBase {
 
         await _context.SaveChangesAsync();
 
+        var emailModel = new TicketEmailModel {
+            Ticket = ticket
+        };
+
+        var user = _context.Users.FirstOrDefault(t => t.Id == currentUserId);
+        await _emailService.SendEmailAsync("TicketUpdated.cshtml", ticket.CreatedByUser.Email, $"neoDesk | Zmodyfikowano zgłoszenie #{ticket.Id}: {ticket.Title}", emailModel);
+
         return NoContent();
     }
 
     [HttpPut("{id}/assign")]
     [Authorize(Roles = "Admin,Technician")]
     public async Task<IActionResult> AssignTicket(int id, [FromBody] int? assignedToUserId) {
-        var ticket = await _context.Tickets.FindAsync(id);
+        var ticket = await _context.Tickets
+            .Include(t => t.CreatedByUser)
+            .FirstOrDefaultAsync(t => t.Id == id);
         if (ticket == null) {
             return NotFound();
         }

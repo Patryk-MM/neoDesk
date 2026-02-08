@@ -2,12 +2,16 @@
 @model TicketEmailModel
 @{
     Layout = "_Layout.cshtml";
-    
+
 }
 
-<p>Utworzono zgłoszenie <strong>#@Model.Ticket.Id</strong>: @Model.Ticket.Title.</p>
+<p>Zgłoszenie <strong>#@Model.Ticket.Id</strong>: @Model.Ticket.Title. zostało zmodyfikowane:</p>
 <p><strong>Data utworzenia:</strong> @Model.Ticket.CreatedAt</p>
 <p><strong>Kategoria:</strong> @Model.Ticket.Category</p>
+
+@if(Model.Ticket.AssignedToUserId is not null){
+    <p><strong>Przypisane do:</strong> @Model.Ticket.AssignedToUser.Name</p>
+}
 
 <p><strong>Treść:</strong> @Model.Ticket.Description</p>
 
