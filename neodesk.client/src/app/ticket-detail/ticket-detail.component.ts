@@ -19,6 +19,7 @@ import {User} from "../models/auth.interface";
   styleUrl: './ticket-detail.component.scss'
 })
 export class TicketDetailComponent implements OnInit {
+
   ticket: Ticket = {} as Ticket;
   currentUser: User = {} as User;
   editTicket: UpdateTicket = {
@@ -49,7 +50,7 @@ export class TicketDetailComponent implements OnInit {
     private router: Router,
     private ticketService: TicketService,
     private lookupService: LookupService,
-    private authService: AuthService,
+    protected authService: AuthService,
   ) {
   }
 
@@ -190,6 +191,19 @@ export class TicketDetailComponent implements OnInit {
         this.isSaving = false; // 3. Turn Spinner OFF (Even if it fails)
       }
     });
+  }
+
+  deleteComment(id: number): void {
+    this.isSaving = true;
+    if (confirm("Czy na pewno chcesz usunąć komentarz?")){
+        this.ticketService.deleteComment(id).subscribe({
+          next: () => {
+            alert("Pomyślnie usunięto komentarz.")
+            this.loadTicket();
+            this.isSaving = false;
+          }
+        })
+    }
   }
 
   goBack(): void {

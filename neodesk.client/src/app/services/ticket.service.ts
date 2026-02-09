@@ -58,4 +58,8 @@ export class TicketService {
   addComment(comment: CreateCommentDTO): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/comments/add`, comment);
   }
+
+  deleteComment(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/comments/delete/${id}`);
+  }
 }

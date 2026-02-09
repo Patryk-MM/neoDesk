@@ -12,16 +12,16 @@
           <li><a [routerLink]="['/stats']"><lucide-icon name="chart-bar" class="w-4 h-4"></lucide-icon>Statystyki</a></li>
         </ul>
       </details>
-      <details open>
-        <summary>
-          <lucide-icon name="book-open"></lucide-icon>
-          <li class="menu-title text-lg text-base-content">Baza wiedzy</li>
-        </summary>
-        <ul>
-          <li><a><lucide-icon name="book-open-text" class="w-4 h-4"></lucide-icon>Wpisy bazy wiedzy</a></li>
-          <li><a><lucide-icon name="book-plus" class="w-4 h-4"></lucide-icon>Utwórz nowy wpis</a></li>
-        </ul>
-      </details>
+<!--      <details open>-->
+<!--        <summary>-->
+<!--          <lucide-icon name="book-open"></lucide-icon>-->
+<!--          <li class="menu-title text-lg text-base-content">Baza wiedzy</li>-->
+<!--        </summary>-->
+<!--        <ul>-->
+<!--          <li><a><lucide-icon name="book-open-text" class="w-4 h-4"></lucide-icon>Wpisy bazy wiedzy</a></li>-->
+<!--          <li><a><lucide-icon name="book-plus" class="w-4 h-4"></lucide-icon>Utwórz nowy wpis</a></li>-->
+<!--        </ul>-->
+<!--      </details>-->
       <details open *ngIf="isAdmin">
         <summary>
           <lucide-icon name="wrench"></lucide-icon>

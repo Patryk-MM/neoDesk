@@ -168,14 +168,29 @@
       </div>
     </form>
     <div *ngIf="ticket.comments.length > 0" class="flex flex-col p-4 border border-base-300 rounded-md">
-      <div class="chat" [ngClass]="currentUser.id === comment.user.id ? 'chat-end' : 'chat-start'" *ngFor="let comment of ticket.comments">
-        <div class="chat-header mb-1">{{comment.user.name}}
+      <div class="chat"
+           [ngClass]="currentUser.id === comment.user.id ? 'chat-end' : 'chat-start'"
+           *ngFor="let comment of ticket.comments">
+        <div class="chat-header mb-1 flex items-center gap-2">
+          {{comment.user.name}}
           <time class="text-xs opacity-50">{{comment.createdAt | date:'dd.MM.yyyy HH:mm'}}</time>
+            <div class="dropdown" [ngClass]="currentUser.id === comment.user.id ? 'dropdown-left' : 'dropdown-right'">
+              <div tabindex="0" role="button" class="btn btn-xs m-1">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                </svg>
+              </div>
+              <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-10 w-52 p-2 shadow-sm">
+                <li><a class="font-bold">Edytuj</a></li>
+                <li><a class="text-error font-bold" (click)="deleteComment(comment.id)">Usuń</a></li>
+              </ul>
+            </div>
         </div>
-        <div class="chat-bubble"
+        <div class="chat-bubble z-1"
              [ngClass]="currentUser.id === comment.user.id ? 'chat-bubble-warning' : 'chat-bubble-success'"
              [innerHTML]="comment.content">
         </div>
+
       </div>
       <quill-editor *ngIf="isCommenting && !isEditing" (onContentChanged)="onCommentContentChange($event)" placeholder="Wpisz treść komentarza...">
 

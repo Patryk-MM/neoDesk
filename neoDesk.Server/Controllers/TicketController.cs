@@ -372,7 +372,19 @@ public class TicketController : ControllerBase {
         return Ok();
     }
 
-    // GET api/ticket/my-tickets
+    [HttpDelete("comments/delete/{id}")]
+    public async Task<ActionResult> DeleteComment(int id) {
+        var comment = await _context.Comments.FindAsync(id);
+        if (comment == null) {
+            return BadRequest(ModelState);
+        }
+
+        _context.Comments.Remove(comment);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+    // GET api/ticket/my-tickets    
     [HttpGet("my-tickets")]
     public async Task<ActionResult<IEnumerable<TicketDTO>>> GetMyTickets() {
         var currentUserId = GetCurrentUserId();
