@@ -17,6 +17,7 @@ builder.Services.AddControllers()
 builder.Services.AddDbContext<NeoDeskDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddHostedService<EmailPollingService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 

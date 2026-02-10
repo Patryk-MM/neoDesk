@@ -1,0 +1,33 @@
+Sender: "jan.kowalski@company.com" <jan.kowalski@company.com>
+From: "jan.kowalski@company.com" <jan.kowalski@company.com>
+Subject: =?utf-8?B?VGVzdCB3Y3p5dHl3YW5pYSB3aWFkb21vxZtjaSBlbWFpbA==?=
+To: "neodesk@neodesk.com" <neodesk@neodesk.com>
+Cc: 
+Bcc: 
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--_=_NextPart0_b3cecb84-a86a-4ecd-a1ba-b9e07a402598"
+
+This is a multi-part message in MIME format.
+
+----_=_NextPart0_b3cecb84-a86a-4ecd-a1ba-b9e07a402598
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+>>> Place your content here <<<
+
+test wczytywania wiadomo=C5=9Bci e-mail
+
+Jan Kowalski
+Company
+
+----_=_NextPart0_b3cecb84-a86a-4ecd-a1ba-b9e07a402598
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8"><d=
+iv>&gt;&gt;&gt; Place your content here &lt;&lt;&lt;</div><div><br></div><d=
+iv>test wczytywania wiadomo=C5=9Bci e-mail</div><div><i><b><br></b></i></di=
+v><div><i><b>Jan Kowalski</b></i></div><div><i><b>Company</b></i></div>
+----_=_NextPart0_b3cecb84-a86a-4ecd-a1ba-b9e07a402598--
+
