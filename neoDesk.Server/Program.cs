@@ -55,7 +55,7 @@ builder.Services.AddOpenApi();
 
 //    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
 //        In = ParameterLocation.Header,
-//        Description = "Wpisz token JWT (bez s³owa Bearer, samo wklejenie tokena wystarczy)",
+//        Description = "Wpisz token JWT (bez sï¿½owa Bearer, samo wklejenie tokena wystarczy)",
 //        Name = "Authorization",
 //        Type = SecuritySchemeType.Http,
 //        BearerFormat = "JWT",
@@ -98,7 +98,7 @@ if (app.Environment.IsDevelopment()) {
 	//});
 
 	app.MapOpenApi();
-	app.MapScalarApiReference("/");
+	app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();
@@ -108,6 +108,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
 app.MapFallbackToFile("/index.html");
 
 app.Run();

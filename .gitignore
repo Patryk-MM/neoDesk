@@ -5,4 +5,4 @@
 *.suo
 neoDesk.Server/Emails/SentEmails
 neoDesk.Server/Emails/Inbox
-*.idea
+.idea/
