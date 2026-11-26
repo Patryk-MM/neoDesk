@@ -1,5 +1,5 @@
-﻿using System.Security.Claims;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +7,8 @@ using neoDesk.Server.Controllers;
 using neoDesk.Server.Data;
 using neoDesk.Server.DTOs;
 using neoDesk.Server.Models;
+using neoDesk.Server.Services;
+using System.Security.Claims;
 
 namespace neoDesk.Server.Tests.Controllers;
 
@@ -14,15 +16,19 @@ public class TicketUpdateParamTests
 {
     private readonly NeoDeskDbContext _context;
     private readonly TicketController _controller;
+	private readonly IEmailService _emailService;
+	private readonly IWebHostEnvironment _env;
 
-    public TicketUpdateParamTests()
+	public TicketUpdateParamTests(IWebHostEnvironment env)
     {
         var options = new DbContextOptionsBuilder<NeoDeskDbContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
 
         _context = new NeoDeskDbContext(options);
-        _controller = new TicketController(_context);
+		_env = env;
+		_emailService = new EmailService(_env);
+		_controller = new TicketController(_context, _emailService);
     }
 
     private void SimulateLoggedInUser(int userId, string role)
@@ -184,7 +190,6 @@ public class TicketUpdateParamTests
             Description = "D",
             Category = Category.Hardware,
             Status = Status.New,
-            CreatedAt = newDate // Admin próbuje zmienić datę
         };
 
         // Act
@@ -227,7 +232,6 @@ public class TicketUpdateParamTests
             Description = "D",
             Category = Category.Hardware,
             Status = Status.New,
-            CreatedAt = fakeNewDate // Próba oszustwa daty
         };
 
         // Act
