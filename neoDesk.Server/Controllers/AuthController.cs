@@ -74,8 +74,6 @@ public class AuthController : ControllerBase
     [Authorize]
     public IActionResult Logout()
     {
-        // In a JWT system, logout is typically handled client-side by removing the token
-        // You could implement token blacklisting here if needed
         return Ok(new { message = "Wylogowano pomyślnie" });
     }
 }

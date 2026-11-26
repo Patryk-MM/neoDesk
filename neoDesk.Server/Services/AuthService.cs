@@ -21,7 +21,6 @@ public class AuthService : IAuthService
         _configuration = configuration;
     }
 
-    // ... fragment pliku neoDesk.Server/Services/AuthService.cs
 
     public async Task<AuthResponseDTO?> LoginAsync(LoginDTO loginDto)
     {
@@ -39,15 +38,12 @@ public class AuthService : IAuthService
         var passwordVerify = BCrypt.Net.BCrypt.Verify(loginDto.Password, user.PasswordHash);
         Console.WriteLine($"Password verify: {passwordVerify}");
 
-        // --- BRAKUJĄCY FRAGMENT ---
         if (!passwordVerify)
         {
             Console.WriteLine("Invalid password");
             return null;
         }
-        // ---------------------------
 
-        // Update last login
         user.LastLoginAt = DateTime.Now;
         await _context.SaveChangesAsync();
 

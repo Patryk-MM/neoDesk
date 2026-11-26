@@ -45,14 +45,13 @@ public class UpdateTicketDTO
 
 public class AssignTicketDTO
 {
-    public int? AssignedToUserId { get; set; } // null to unassign
+    public int? AssignedToUserId { get; set; }
 }
 
 
-public class TicketStatusUpdateDTO
-{
+public class TicketStatusUpdateDTO {
     [Required]
     public Status Status { get; set; }
-    
-    public string? Comment { get; set; } // Optional comment for status change
+
+    public string? Comment { get; set; }
 }

@@ -28,7 +28,6 @@ export class CreateTicketComponent {
     private authService: AuthService,
     private router: Router
   ) {
-    // Set current date/time as default
     this.ticket.createdAt = new Date().toISOString().slice(0, 16);
   }
 

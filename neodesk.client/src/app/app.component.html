@@ -7,7 +7,7 @@
   <!-- Sidebar + content -->
   <div class="flex flex-1 overflow-hidden">
     <!-- Sidebar -->
-    <app-sidebar></app-sidebar>
+    <app-sidebar *ngIf="authService.isAuthenticated()"></app-sidebar>
 
     <!-- Main content area -->
     <main class="flex-1 overflow-auto p-4">

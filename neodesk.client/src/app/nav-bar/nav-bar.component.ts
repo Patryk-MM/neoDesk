@@ -10,7 +10,7 @@ import { User } from '../models/auth.interface';
 export class NavBarComponent implements OnInit {
   currentUser: User | null = null;
 
-  constructor(private authService: AuthService) {}
+  constructor(protected authService: AuthService) {}
 
   ngOnInit(): void {
     this.authService.currentUser$.subscribe(user => {

@@ -11,7 +11,7 @@ namespace neoDesk.Server.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize(Roles = "Admin")] // Only admins can manage users
+[Authorize(Roles = "Admin")]
 public class UsersController : ControllerBase
 {
     private readonly NeoDeskDbContext _context;
@@ -21,7 +21,6 @@ public class UsersController : ControllerBase
         _context = context;
     }
 
-    // GET api/users
     [HttpGet]
     public async Task<ActionResult<IEnumerable<UserDTO>>> GetUsers()
     {
@@ -33,9 +32,8 @@ public class UsersController : ControllerBase
         return Ok(userDtos);
     }
 
-    // GET api/users/assignable - For ticket assignment (Technicians + Admins)
     [HttpGet("assignable")]
-    [Authorize(Roles = "Admin,Technician")] // Technicians can also see this for assignments
+    [Authorize(Roles = "Admin,Technician")] 
     public async Task<ActionResult<IEnumerable<UserDTO>>> GetAssignableUsers()
     {
         var users = await _context.Users
@@ -47,7 +45,6 @@ public class UsersController : ControllerBase
         return Ok(userDtos);
     }
 
-    // GET api/users/5
     [HttpGet("{id}")]
     public async Task<ActionResult<UserDTO>> GetUser(int id)
     {
@@ -60,7 +57,6 @@ public class UsersController : ControllerBase
         return Ok(MapToUserDTO(user));
     }
 
-    // POST api/users
     [HttpPost]
     public async Task<ActionResult<UserDTO>> CreateUser([FromBody] CreateUserDTO createUserDto)
     {
@@ -69,13 +65,11 @@ public class UsersController : ControllerBase
             return BadRequest(ModelState);
         }
 
-        // Check if email already exists
         if (await _context.Users.AnyAsync(u => u.Email.ToLower() == createUserDto.Email.ToLower()))
         {
             return BadRequest(new { message = "Użytkownik o podanym adresie email już istnieje" });
         }
 
-        // Parse role
         if (!Enum.TryParse<UserRole>(createUserDto.Role, out var userRole))
         {
             return BadRequest(new { message = "Nieprawidłowa rola użytkownika" });
@@ -97,7 +91,6 @@ public class UsersController : ControllerBase
         return CreatedAtAction(nameof(GetUser), new { id = user.Id }, MapToUserDTO(user));
     }
 
-    // PUT api/users/5
     [HttpPut("{id}")]
     public async Task<ActionResult<UserDTO>> UpdateUser(int id, [FromBody] UpdateUserDTO updateUserDto)
     {
@@ -112,13 +105,11 @@ public class UsersController : ControllerBase
             return NotFound();
         }
 
-        // Check if email already exists (excluding current user)
         if (await _context.Users.AnyAsync(u => u.Id != id && u.Email.ToLower() == updateUserDto.Email.ToLower()))
         {
             return BadRequest(new { message = "Użytkownik o podanym adresie email już istnieje" });
         }
 
-        // Parse role
         if (!Enum.TryParse<UserRole>(updateUserDto.Role, out var userRole))
         {
             return BadRequest(new { message = "Nieprawidłowa rola użytkownika" });
@@ -129,7 +120,6 @@ public class UsersController : ControllerBase
         user.Role = userRole;
         user.IsActive = updateUserDto.IsActive;
 
-        // Update password if provided
         if (!string.IsNullOrEmpty(updateUserDto.Password))
         {
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(updateUserDto.Password);
@@ -140,7 +130,6 @@ public class UsersController : ControllerBase
         return Ok(MapToUserDTO(user));
     }
 
-    // POST api/users/5/reset-password
     [HttpPost("{id}/reset-password")]
     public async Task<IActionResult> ResetPassword(int id, [FromBody] ResetPasswordDTO resetPasswordDto)
     {
@@ -161,7 +150,6 @@ public class UsersController : ControllerBase
         return Ok(new { message = "Hasło zostało zresetowane pomyślnie" });
     }
 
-    // POST api/users/5/toggle-status
     [HttpPost("{id}/toggle-status")]
     public async Task<ActionResult<UserDTO>> ToggleUserStatus(int id)
     {
@@ -177,7 +165,6 @@ public class UsersController : ControllerBase
         return Ok(MapToUserDTO(user));
     }
 
-    // DELETE api/users/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUser(int id)
     {
@@ -187,7 +174,6 @@ public class UsersController : ControllerBase
             return NotFound();
         }
 
-        // Check if user has any tickets
         var hasTickets = await _context.Tickets.AnyAsync(t => t.CreatedByUserId == id || t.AssignedToUserId == id);
         if (hasTickets)
         {

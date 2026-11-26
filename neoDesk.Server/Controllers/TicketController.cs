@@ -223,18 +223,16 @@ public class TicketController : ControllerBase {
         var currentUserId = GetCurrentUserId();
         var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
 
-        // Check permissions: only creator or admin can edit
-        // Technicians can edit if ticket is assigned to them
         bool canEdit = false;
 
         if (userRole == "Admin") {
-            canEdit = true; // Admins can edit any ticket
+            canEdit = true; 
         }
         else if (ticket.CreatedByUserId == currentUserId) {
-            canEdit = true; // Creator can edit their own ticket
+            canEdit = true;
         }
         else if (userRole == "Technician" && ticket.AssignedToUserId == currentUserId) {
-            canEdit = true; // Assigned technician can edit
+            canEdit = true;
         }
 
         if (!canEdit) {
@@ -270,7 +268,6 @@ public class TicketController : ControllerBase {
             return NotFound();
         }
 
-        // POPRAWKA: Waliduj Usera tylko jeśli przysłano konkretne ID (nie null)
         if (!(assignedToUserId is null)) {
             var assignedUser = await _context.Users.FindAsync(assignedToUserId.Value);
 
@@ -283,13 +280,11 @@ public class TicketController : ControllerBase {
             }
         }
 
-        // Jeśli assignedToUserId jest null, kod przechodzi tutaj i wpisuje null do bazy
         ticket.AssignedToUserId = assignedToUserId;
         ticket.LastUpdatedAt = DateTime.Now;
 
         await _context.SaveChangesAsync();
 
-        // POPRAWKA 2: Naprawiona logika wiadomości (były odwrócone)
         var message = !(assignedToUserId is null)
             ? "Zgłoszenie zostało przypisane"
             : "Przypisanie zgłoszenia zostało usunięte";
@@ -298,7 +293,6 @@ public class TicketController : ControllerBase {
     }
 
 
-    // PUT api/ticket/5/status - Quick status update
     [HttpPut("{id}/status")]
     public async Task<IActionResult> UpdateStatus(int id, [FromBody] TicketStatusUpdateDTO statusUpdateDTO) {
         var ticket = await _context.Tickets.FindAsync(id);
@@ -320,7 +314,6 @@ public class TicketController : ControllerBase {
         }
         else if (ticket.CreatedByUserId == currentUserId &&
                  (statusUpdateDTO.Status == Status.New || statusUpdateDTO.Status == Status.Suspended)) {
-            // Users can only reopen or suspend their own tickets
             canUpdateStatus = true;
         }
 
@@ -336,9 +329,8 @@ public class TicketController : ControllerBase {
         return Ok(new { message = "Status zgłoszenia został zaktualizowany" });
     }
 
-    // DELETE api/ticket/5
     [HttpDelete("{id}")]
-    [Authorize(Roles = "Admin")] // Only admins can delete
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id) {
         var ticket = await _context.Tickets.FindAsync(id);
         if (ticket == null) {
@@ -384,7 +376,6 @@ public class TicketController : ControllerBase {
 
         return NoContent();
     }
-    // GET api/ticket/my-tickets    
     [HttpGet("my-tickets")]
     public async Task<ActionResult<IEnumerable<TicketDTO>>> GetMyTickets() {
         var currentUserId = GetCurrentUserId();

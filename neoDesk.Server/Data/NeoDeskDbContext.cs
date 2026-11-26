@@ -14,7 +14,6 @@ public class NeoDeskDbContext : DbContext {
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         base.OnModelCreating(modelBuilder);
 
-        // Configure relationships
         modelBuilder.Entity<Ticket>()
             .HasOne(t => t.CreatedByUser)
             .WithMany(u => u.CreatedTickets)
@@ -39,7 +38,6 @@ public class NeoDeskDbContext : DbContext {
             .HasForeignKey(c => c.TicketId)
             .OnDelete(DeleteBehavior.Cascade); 
 
-        // Seed data
         modelBuilder.Entity<User>().HasData(
             new User {
                 Id = 1,

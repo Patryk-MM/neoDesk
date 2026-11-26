@@ -3,7 +3,7 @@
   <!-- Header -->
   <div class="flex justify-between items-center mb-6">
     <h1 class="text-2xl font-bold">Zarządzanie użytkownikami</h1>
-    <button class="btn btn-primary" (click)="openCreateForm()">
+    <button class="btn btn-sm btn-primary" (click)="openCreateForm()">
       <span class="mr-2">+</span>
       Dodaj użytkownika
     </button>
@@ -34,7 +34,7 @@
         <td>{{ user.id }}</td>
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
-        <td>
+        <td class="whitespace-nowrap">
           <div class="badge"
                [class.badge-success]="user.role === 'Admin'"
                [class.badge-warning]="user.role === 'Technician'"
