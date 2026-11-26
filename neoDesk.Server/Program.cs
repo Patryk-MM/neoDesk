@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using neoDesk.Server.Data;
 using neoDesk.Server.Services;
-using Microsoft.OpenApi.Models;
+using Scalar.AspNetCore;
+using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,33 +45,38 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddSwaggerGen(option => {
-    option.SwaggerDoc("v1", new OpenApiInfo { Title = "neoDesk API", Version = "v1" });
+builder.Services.AddOpenApi();
 
-    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
-        In = ParameterLocation.Header,
-        Description = "Wpisz token JWT (bez s³owa Bearer, samo wklejenie tokena wystarczy)",
-        Name = "Authorization",
-        Type = SecuritySchemeType.Http,
-        BearerFormat = "JWT",
-        Scheme = "Bearer"
-    });
 
-    option.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type=ReferenceType.SecurityScheme,
-                    Id="Bearer"
-                }
-            },
-            new string[]{}
-        }
-    });
-});
+//TEMPORARILY COMMENTED DURING MIGRATION FROM SWAGGER TO OPENAPI
+//TODO: DELETE THIS COMMENTED CODE
+//builder.Services.AddSwaggerGen(option => {
+//    option.SwaggerDoc("v1", new OpenApiInfo { Title = "neoDesk API", Version = "v1" });
+
+//    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
+//        In = ParameterLocation.Header,
+//        Description = "Wpisz token JWT (bez sï¿½owa Bearer, samo wklejenie tokena wystarczy)",
+//        Name = "Authorization",
+//        Type = SecuritySchemeType.Http,
+//        BearerFormat = "JWT",
+//        Scheme = "Bearer"
+//    });
+
+//    option.AddSecurityRequirement(new OpenApiSecurityRequirement
+//    {
+//        {
+//            new OpenApiSecurityScheme
+//            {
+//                Reference = new OpenApiReference
+//                {
+//                    Type=ReferenceType.SecurityScheme,
+//                    Id="Bearer"
+//                }
+//            },
+//            new string[]{}
+//        }
+//    });
+//});
 
 builder.Services.AddCors(options => {
     options.AddDefaultPolicy(policy => {
@@ -87,10 +92,13 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 if (app.Environment.IsDevelopment()) {
-    app.UseSwagger();
-    app.UseSwaggerUI(options => {
-        options.EnablePersistAuthorization();
-    });
+	//app.UseSwagger();
+	//app.UseSwaggerUI(options => {
+	//    options.EnablePersistAuthorization();
+	//});
+
+	app.MapOpenApi();
+	app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();
@@ -100,6 +108,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
 app.MapFallbackToFile("/index.html");
 
 app.Run();

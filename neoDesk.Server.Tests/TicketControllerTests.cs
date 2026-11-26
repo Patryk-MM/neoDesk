@@ -1,12 +1,15 @@
-﻿using System.Security.Claims;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using neoDesk.Server.Controllers;
 using neoDesk.Server.Data;
 using neoDesk.Server.DTOs;
+using neoDesk.Server.Helpers;
 using neoDesk.Server.Models;
+using neoDesk.Server.Services;
+using System.Security.Claims;
 
 namespace neoDesk.Server.Tests.Controllers;
 
@@ -15,14 +18,20 @@ public class TicketControllerTests
     private readonly NeoDeskDbContext _context;
     private readonly TicketController _controller;
 
-    public TicketControllerTests()
+	private readonly IEmailService _emailService;
+	private readonly IWebHostEnvironment _env;
+
+
+	public TicketControllerTests(IWebHostEnvironment env)
     {
         var options = new DbContextOptionsBuilder<NeoDeskDbContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
 
         _context = new NeoDeskDbContext(options);
-        _controller = new TicketController(_context);
+		_env = env;
+		_emailService = new EmailService(_env);
+		_controller = new TicketController(_context, _emailService);
     }
 
     // Helper do symulacji zalogowanego użytkownika
@@ -56,7 +65,7 @@ public class TicketControllerTests
         await _context.SaveChangesAsync();
 
         // Act
-        var result = await _controller.Get();
+        var result = await _controller.Get(new TicketFilterParams());
 
         // Assert
         var okResult = result.Result as OkObjectResult;
@@ -122,10 +131,10 @@ public class TicketControllerTests
 
         SimulateLoggedInUser(1, "Admin"); // Tylko admin/technik może przypisywać
 
-        var assignDto = new AssignTicketDTO { TicketId = 1, AssignedToUserId = 5 };
+        var assignDto = new AssignTicketDTO { AssignedToUserId = 5 };
 
         // Act
-        var result = await _controller.AssignTicket(1, assignDto);
+        var result = await _controller.AssignTicket(1, 5);
 
         // Assert
         result.Should().BeOfType<OkObjectResult>();
